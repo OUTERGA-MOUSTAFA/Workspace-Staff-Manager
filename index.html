@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WorkSpare</title>
+    <link rel="stylesheet" href="/assets/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="items item-1">
+            <button type="button">Add New Worker</button>
+            <div class="EnAtend">EnAtend
+                <p class="para">parammmm</p>
+            </div>
+        </div>
+        <div class="items item-2">
+            <div class="elements elem-1">
+                <h3>Salle conférence</h3>
+                <select name="" id="conference">
+                    <option value="">worker</option>
+                </select>
+            </div>
+            <div class="elements elem-2">
+                <h3>Réception</h3>
+                <select name="" id="reception">
+                    <option value="">worker</option>
+                </select>
+            </div>
+            <div class="elements elem-3">
+                <h3>Salle des serveurs</h3>
+                <select name="" id="securite">
+                    <option value="">worker</option>
+                </select>
+            </div>
+            <div class="elements elem-5">
+                <h3>Salle de sécurité</h3>
+                <select name="" id="serveur">
+                    <option value="">worker</option>
+                </select>
+            </div>
+            <div class="elements elem-6">
+                <h3>Salle du personnel</h3>
+                <select name="" id="personnel">
+                    <option value="">worker</option>
+                </select>
+            </div>
+            <div class="elements elem-4">
+                <h3>Salle archive</h3>
+                <select name="" id="archive">
+                    <option value="">worker</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="Register">
+        <form action="" method="post" class="text-center">
+            <span class="text-center">Ajouter un Employé(e)</span>
+            <div class="inputs">
+                <label for="Nom">Nom</label>
+                <input type="text" name="Nom" id="Nom">
+            </div>
+
+            <div class="inputs">
+                <label for="Role">Rôle</label>
+                <select name="Role" id="Role">
+                    <option value="">Workers</option>
+                </select>
+            </div>
+            <div class="inputs">
+                <label for="photo">Photo</label>
+                <input type="url" id="photo" placeholder="https://example.com/photo.jpg">
+                <img id="defaultphoto" src="images/profile.svg" width="100">
+            </div>
+            <div class="inputs">
+                <label for="Experiences">Expériences professionnelles: </label>
+                <div class="experiences">
+                    <label for="Company">Company</label>
+                    <input type="text" name="Company" id="Company">
+                    <label for="Role">Role</label>
+                    <input type="text" name="Role" id="role">
+                    <label for="date">From</label>
+                    <input type="date" name="date" id="fromDate">
+                    <label for="date">To</label>
+                    <input type="date" name="date" id="toDate">
+                    <button id="addExp">Add Experience</button>
+                </div>
+            </div>
+            <div class="inputs">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email">
+            </div>
+
+            <div class="inputs">
+                <label for="telephone">Téléphone</label>
+                <input type="tel" name="telephone" id="telephone" placeholder="+212 7 59 46 28 13">
+            </div>
+            <button class="saveWorker">Save Worker</button>
+            <button type="reset" class="Cancel">Cancel</button>
+        </form>
+    </div>
+
+    <script src="assets/script.js"></script>
+
+</body>
+
+</html>
