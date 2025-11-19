@@ -11,57 +11,49 @@
 <body>
     <div class="container">
         <div class="items item-1">
-            <button type="button">Add New Worker</button>
-            <div class="EnAtend">EnAtend
-                <p class="para">parammmm</p>
+            <div class="item-1-counter">
+                <button type="button" id="addWorker">Add New Worker</button>
+                <div id="counterWorker"></div>
+            </div>
+            <div class="EnAtend">
             </div>
         </div>
         <div class="items item-2">
             <div class="elements elem-1">
                 <h3>Salle conférence</h3>
-                <select name="" id="conference">
-                    <option value="">worker</option>
-                </select>
+                <img src="images/plus.png" alt="add worker" id="salleConference">
             </div>
             <div class="elements elem-2">
                 <h3>Réception</h3>
-                <select name="" id="reception">
-                    <option value="">worker</option>
-                </select>
+                <img src="images/plus.png" alt="add worker" id="salleReception">
             </div>
             <div class="elements elem-3">
                 <h3>Salle des serveurs</h3>
-                <select name="" id="securite">
-                    <option value="">worker</option>
-                </select>
+                <img src="images/plus.png" alt="add worker" id="salleServer">
             </div>
             <div class="elements elem-5">
                 <h3>Salle de sécurité</h3>
-                <select name="" id="serveur">
-                    <option value="">worker</option>
-                </select>
+                <img src="images/plus.png" alt="add worker" id="salleSecite">
             </div>
             <div class="elements elem-6">
                 <h3>Salle du personnel</h3>
-                <select name="" id="personnel">
-                    <option value="">worker</option>
-                </select>
+                <img src="images/plus.png" alt="add worker" id="sallePersonnel">
             </div>
             <div class="elements elem-4">
                 <h3>Salle archive</h3>
-                <select name="" id="archive">
-                    <option value="">worker</option>
-                </select>
+                <img src="images/plus.png" alt="add worker" id="salleArchive">
             </div>
         </div>
     </div>
 
     <div class="Register">
-        <form action="" method="post" class="text-center">
+            <img src="images/close.png" alt="close Model" class="closeModel">
+        <form id="addworkers" class="text-center">
             <span class="text-center">Ajouter un Employé(e)</span>
             <div class="inputs">
                 <label for="Nom">Nom</label>
                 <input type="text" name="Nom" id="Nom">
+                <p id="paranom" class="paraErrore"></p>
             </div>
 
             <div class="inputs">
@@ -69,37 +61,61 @@
                 <select name="Role" id="Role">
                     <option value="">Workers</option>
                 </select>
+                <p id="pararole" class="paraErrore"></p>
             </div>
             <div class="inputs">
                 <label for="photo">Photo</label>
                 <input type="url" id="photo" placeholder="https://example.com/photo.jpg">
                 <img id="defaultphoto" src="images/profile.svg" width="100">
             </div>
-            <div class="inputs">
+            <div class="inputs" >
                 <label for="Experiences">Expériences professionnelles: </label>
                 <div class="experiences">
                     <label for="Company">Company</label>
                     <input type="text" name="Company" id="Company">
-                    <label for="Role">Role</label>
-                    <input type="text" name="Role" id="role">
-                    <label for="date">From</label>
-                    <input type="date" name="date" id="fromDate">
-                    <label for="date">To</label>
-                    <input type="date" name="date" id="toDate">
+                <p id="paracompany" class="paraErrore"></p>
+                    <label for="roleCompany">Role</label>
+                    <input type="text" name="roleCompany" id="role">
+                <p id="pararolecompany" class="paraErrore"></p>
+                    <label for="fromdate">From</label>
+                    <input type="date" name="fromdate" id="fromDate">
+                <p id="parafromdate" class="paraErrore"></p>
+                    <label for="todate">To</label>
+                    <input type="date" name="todate" id="toDate">
+                <p id="paratodate" class="paraErrore"></p>
+                <div  class="ExpPro">
+                    
+                </div>
                     <button id="addExp">Add Experience</button>
                 </div>
             </div>
             <div class="inputs">
                 <label for="email">Email</label>
                 <input type="email" name="email" id="email">
+                <p id="paraemail" class="paraErrore"></p>
             </div>
 
             <div class="inputs">
                 <label for="telephone">Téléphone</label>
                 <input type="tel" name="telephone" id="telephone" placeholder="+212 7 59 46 28 13">
+                <p id="paratele" class="paraErrore"></p>
             </div>
             <button class="saveWorker">Save Worker</button>
             <button type="reset" class="Cancel">Cancel</button>
+            <div class="Workers">
+                <div id="photoworker" ><img src="images/profile.svg" alt="profile Worker pic" id="profileWorkerPic"></div>
+                <div id="nomworker" ><p>hello</p> <p id="roleworker">titre</p></div>
+                <button id="btnEdit">Edit</button>
+            </div> <div class="Workers">
+                <div id="photoworker" ><img src="images/profile.svg" alt="profile Worker pic" id="profileWorkerPic"></div>
+                <div id="nomworker" ><p>hello</p> <p id="roleworker">titre</p></div>
+                <button id="btnEdit">Edit</button>
+            </div>
+             <div class="Workers">
+                <div id="photoworker" ><img src="images/profile.svg" alt="profile Worker pic" id="profileWorkerPic"></div>
+                <div id="nomworker" ><p>hello</p> <p id="roleworker">titre</p></div>
+                <button id="btnEdit">Edit</button>
+            </div>
         </form>
     </div>
 
