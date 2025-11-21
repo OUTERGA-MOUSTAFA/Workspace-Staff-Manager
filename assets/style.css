@@ -104,6 +104,9 @@
  }
 
  .BriefInfos {
+     position: relative;
+     top: 0;
+     left: 0;
      min-width: 360px;
      max-width: 767px;
      height: 100%;
@@ -113,6 +116,16 @@
      flex-direction: row;
      justify-content: center;
      padding: 6px;
+ }
+
+ #closeBriefInfos {
+     position: absolute;
+     z-index: 100;
+     top: 2%;
+     right: 1%;
+     width: 35px;
+     height: 35px;
+     border-radius: 50%;
  }
 
  .infosWorker {
@@ -234,7 +247,7 @@
      border-radius: 20px;
      padding: 40px 15px;
      margin: 5px auto;
-    color: #40c403;
+     color: #40c403;
  }
 
  .textcenter {
@@ -245,13 +258,15 @@
      padding: 20px 10px;
      margin: 5px auto;
  }
-.text-center{
+
+ .text-center {
      font-weight: 400;
-     text-transform:capitalize;
+     text-transform: capitalize;
      display: block;
      text-align: center;
      padding: 16px 10px;
-}
+ }
+
  #defaultphoto {
      display: block;
      margin: 10px auto;
@@ -342,7 +357,7 @@
      padding: 10px 20px;
      border-radius: 6px;
      cursor: pointer;
-     margin:4px auto;
+     margin: 4px auto;
  }
 
  .saveWorker {
@@ -356,25 +371,26 @@
  }
 
  .EnAtend {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-    width: 250px;
-    height: 70px;
-    height: 70px;
-    padding: 5px;
-    margin: 5px auto;
-    font-size: 18px;
-    border-radius: 15px;
-    transition: all ease-in-out .5s;
-    cursor: pointer;
-    background: #c123238f;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: space-evenly;
+     width: 250px;
+     height: 70px;
+     height: 70px;
+     padding: 5px;
+     margin: 5px auto;
+     font-size: 18px;
+     border-radius: 15px;
+     transition: all ease-in-out .5s;
+     cursor: pointer;
+     background: #c123238f;
  }
 
  .EnAtend:hover {
      box-shadow: 2px -2px 8px rgba(176, 165, 165, 0.79);
  }
+
  .Worker {
      width: 100%;
      display: flex;
@@ -568,11 +584,20 @@
      .BriefInfos {
          width: 500px;
          height: 80%;
-         margin:auto;
+         margin: auto;
          padding: 10px;
          border-radius: 15px;
          display: flex;
          align-items: center;
+     }
+
+     #closeBriefInfos {
+         width: 40px;
+         height: 40px;
+         transition: all ease .8s;
+     }
+     #closeBriefInfos:hover {
+         rotate: 360deg;
      }
  }
 
@@ -641,11 +666,20 @@
      .paraExperience {
          width: 30%;
      }
+
      .BriefInfos {
-     width: 500px;
-     height: 80%;
-     margin: auto;
-     background: #b3b0b0f0;
-     padding: 15px;
- }
+         width: 500px;
+         height: 80%;
+         margin: auto;
+         background: #b3b0b0f0;
+         padding: 15px;
+     }
+      #closeBriefInfos {
+         width: 40px;
+         height: 40px;
+         transition: all ease .8s;
+     }
+     #closeBriefInfos:hover {
+         rotate: 360deg;
+     }
  }

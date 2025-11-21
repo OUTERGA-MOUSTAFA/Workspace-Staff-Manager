@@ -29,13 +29,16 @@ closeModal.addEventListener('click', () => {
 addWorker.addEventListener('click', () => {
     Modal.style.display = 'block'
 })
+
 const modalProfile = document.querySelector('.model')
 const infosWorker = document.querySelector('.infosWorker')
 document.querySelector('#closeProfile').addEventListener('click', () => {
     infosWorker.style.display = 'none'
     modalProfile.style.display = 'none'
 })
-
+document.querySelector('#closeBriefInfos').addEventListener('click',()=>{
+    infosWorker.style.display = 'none'
+})
 document.querySelector('.BriefInfos').addEventListener('click', () => {
     infosWorker.style.display = 'block'
 })
