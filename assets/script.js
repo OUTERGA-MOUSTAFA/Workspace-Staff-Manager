@@ -1,7 +1,7 @@
 // document.querySelector(".Cancel").onclick = () => {
 //     document.querySelector(".Register").style.display = "none";
 // };
-const roles = ['Sécurité', 'Nettoyage', 'Receptionest', 'Serveur', 'Autre rôles']
+const roles = ['Nettoyage', 'Sécurité', 'Receptionest', 'Serveur', 'Manager', 'Autre rôles']
 const nom = document.getElementById('Nom')
 const Roles = document.getElementById('Role')
 const Company = document.getElementById('Company')
@@ -18,8 +18,8 @@ const closeModal = document.querySelector('.closeModel')
 const url = document.getElementById('photo')
 const Modal = document.querySelector('.Register')
 let counterWorker = document.querySelector('#counterWorker')
-
-const EnAtend = document.querySelector('.EnAtend')
+let counteur = 0
+const item1 = document.querySelector('.item-1')
 
 /*---------------close Modal------------------------*/
 closeModal.addEventListener('click', () => {
@@ -28,6 +28,16 @@ closeModal.addEventListener('click', () => {
 /*--------------Open Modal--------------------------*/
 addWorker.addEventListener('click', () => {
     Modal.style.display = 'block'
+})
+const modalProfile = document.querySelector('.model')
+const infosWorker = document.querySelector('.infosWorker')
+document.querySelector('#closeProfile').addEventListener('click', () => {
+    infosWorker.style.display = 'none'
+    modalProfile.style.display = 'none'
+})
+
+document.querySelector('.BriefInfos').addEventListener('click', () => {
+    infosWorker.style.display = 'block'
 })
 
 /*---------------Remlire list roles workers---------*/
@@ -41,15 +51,15 @@ roles.forEach(elem => {
 })
 
 /* --------------declary arrays empty---------------*/
-let SalleConférence = []
-let SalleRéception = []
-let SalleServeurs = []
-let SalleSécurité = []
-let SallePersonnel = []
-let SalleArchives = []
+let salleConference = []
+let salleReception = []
+let salleServeurs = []
+let salleSecurite = []
+let sallePersonnel = []
+let salleArchives = []
 let workers = []
 let TableExp = []
-console.log(TableExp, workers)
+
 //--------------- validation funtions befor add------
 function errorValidation() {
     const paracompany = document.querySelector('#paracompany')
@@ -113,7 +123,7 @@ function errosHandling() {
 
     let selectedRole = Roles.value;
     let emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-    let regexphone = /^\+212[6-7][0-9]{8}$/
+    let regexphone = /^\+212|0[6-7][0-9]{8}$/
     let nomRegex = /^[a-zA-ZÀ-ÿ\s]{5,30}$/
 
     paranom.textContent = !nomRegex.test(nom.value.trim()) ? 'Nom non valide' : ""
@@ -135,6 +145,33 @@ function urlValidation() {
         return defaultPhoto.src;
     }
 }
+
+function profiles(classWorker, img, tableworkers) {
+
+    let Worker = document.createElement('div');
+    console.log("Worker table profile: ", tableworkers)
+    Worker.className = "Worker"
+    classWorker.innerHTML = ""
+    Worker.innerHTML = tableworkers.map((elem) =>
+        `  
+         <div class="EnAtend" onclick="addWorker(${elem.id})">
+                <div class="photoworker">                
+                    <img src="${elem.photo}" alt="profile Worker pic" class="profileWorkerPic"></div>
+                <div class="nomworker">
+                    <p>${elem.Nom}</p>
+                    <p class="roleworker">${elem.Role}</p>
+                </div>
+                <img src="${img}" alt="out worker" class="btnEdit">
+            </div>
+            `).join('')
+    classWorker.appendChild(Worker)
+}
+function EnAtendWorkers() {
+    let enAtend = document.querySelector('.enAtend')
+    let img = "images/check.png"
+    profiles(enAtend, img, workers)
+}
+
 function formValidation() {
 
     let photoUrl = urlValidation()
@@ -142,8 +179,9 @@ function formValidation() {
     errosHandling()
 
     if (nom.value && selectedRole !== "" && email.value && telephone.value) {
-
+        counteur++
         let addWorker = {
+            id: counteur,
             Nom: nom.value,
             Role: selectedRole,
             photo: photoUrl,
@@ -151,35 +189,89 @@ function formValidation() {
             Email: email.value,
             Telephone: telephone.value,
             Zone: null
-
         }
         document.querySelector('.ExpPro').innerHTML = ""
-        workers.push(addWorker)
-        console.log( workers)
+        workers.unshift(addWorker)
+        console.log(workers)
         document.querySelector("form").reset();
         TableExp = []
         EnAtendWorkers()
-        counterWorker.textContent = workers.length == 0 ? 0: workers.length
+        counterWorker.textContent = workers.length == 0 ? 0 : workers.length
     }
 }
 
-function EnAtendWorkers() {
-    // Show worker in En Atend section
+/*********************************************************** */
+function AddWorker(id) {
 
-    let enAtend = document.createElement('div');
-    enAtend.className = "Workers"
-     EnAtend.innerHTML = "";
-    enAtend.innerHTML = workers.map(item => `
-        <div id="photoworker" ><img src="${item.photo}" alt="profile Worker pic" id="profileWorkerPic"></div>
-        <div id="nomworker" ><p>${item.Nom}</p> <p id="role">${item.Role}</p></div>
-        <button id="btnEdit">Edit</button>
-   
-    `).join('');
-    EnAtend.appendChild(enAtend);
+    for (let i = 0; i < workers.length; i++) {
+        if (roles.includes(i.Role)) {
+            salleConference.push(workers[i])
+            workers.splice(i, 1)
+        }
+
+    }
 }
+/*********************************************************** */
+let classWorker = document.querySelector('.BriefInfos')
+function SalleConference() {
+    let employeur = []
+    workers.map(elem =>
+        elem.Zone == null ? employeur.push(elem) : 0
+    )
+    let img = "images/plus.png"
+    profiles(classWorker, img, employeur)
+}
+/********************************************************************************* */
+function SalleReception() {
+    let employeur = []
+    workers.map(elem =>
+        elem.Zone == null && (elem.Role === "Receptionest" || elem.Role === "Manager" || elem.Role === "Nettoyage") ? employeur.push(elem) : 0
+    )
+    let img = "images/plus.png"
+    profiles(classWorker, img, employeur)
+}
+/**************************************************************************************** */
+function SalleServer() {
+    let employeur = []
+    workers.map(elem =>
+        elem.Zone == null && (elem.Role === "Serveur" || elem.Role === "Manager" || elem.Role === "Nettoyage") ? employeur.push(elem) : 0
+    )
+    let img = "images/plus.png"
+    profiles(classWorker, img, employeur)
+}
+/******************************************************************************************* */
 
 
+function SalleSecurie() {
+    let employeur = []
+    workers.map(elem =>
+        elem.Zone == null && (elem.Role === "Sécurité" || elem.Role === "Manager" || elem.Role === "Nettoyage") ? employeur.push(elem) : 0
+    )
+    let img = "images/plus.png"
+    profiles(classWorker, img, employeur)
+}
+/******************************************************************************************* */
 
+function SallePersonnel() {
+    let employeur = []
+    workers.map(elem =>
+        elem.Zone == null ? employeur.push(elem) : 0
+    )
+    let img = "images/plus.png"
+    profiles(classWorker, img, employeur)
+}
+/******************************************************************************************* */
+
+['Nettoyage', 'Sécurité', 'Receptionest', 'Serveur', 'Manager', 'Autre rôles']
+
+function SalleArchive() {
+    let employeur = []
+    workers.map(elem =>
+        elem.Zone == null && elem.Role !="Nettoyage" ? employeur.push(elem) : 0
+    )
+    let img = "images/plus.png"
+    profiles(classWorker, img, employeur)
+}
 
 //-----***********company btn in form
 addExp.addEventListener('click', (event) => {
@@ -191,4 +283,66 @@ addExp.addEventListener('click', (event) => {
 saveWorker.addEventListener('click', (e) => {
     e.preventDefault()
     formValidation()
-}) 
+})
+document.querySelector('#SalleConference').addEventListener('click', () => {
+    let maxSalleConference = 8
+
+    if (maxSalleConference == salleConference.length) {
+        alert('La salle de conférence est plain! merçi')
+        return
+    }
+    modalProfile.style.display = 'block'
+    SalleConference()
+})
+document.querySelector('#SalleReception').addEventListener('click', () => {
+    let maxSalleResption = 3
+
+    if (maxSalleResption == salleReception.length) {
+        alert('La salle de reception est plain! merçi')
+        return
+    }
+    modalProfile.style.display = 'block'
+    SalleReception()
+})
+document.querySelector('#SalleServer').addEventListener('click', () => {
+    let maxSalleDev = 2
+
+    if (maxSalleDev == salleServeurs.length) {
+        alert('La salle de reception est plain! merçi')
+        return
+    }
+    modalProfile.style.display = 'block'
+    SalleServer()
+})
+
+
+document.querySelector('#SalleSecurie').addEventListener('click', () => {
+    let maxSalleSecurite = 2
+
+    if (maxSalleSecurite == salleSecurite.length) {
+        alert('La salle de sécurité est plain! merçi')
+        return
+    }
+    modalProfile.style.display = 'block'
+    SalleSecurie()
+})
+document.querySelector('#SallePersonnel').addEventListener('click', () => {
+    let maxSallePersonnel = 2
+
+    if (maxSallePersonnel == sallePersonnel.length) {
+        alert('La salle de personnel est plain! merçi')
+        return
+    }
+    modalProfile.style.display = 'block'
+    SalleConference()
+})
+document.querySelector('#SalleArchive').addEventListener('click', () => {
+    let maxSalleArchive = 2
+
+    if (maxSalleArchive == sallePersonnel.length) {
+        alert('La salle de personnel est plain! merçi')
+        return
+    }
+    modalProfile.style.display = 'block'
+    SalleArchive()
+})

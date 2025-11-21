@@ -12,7 +12,7 @@
 
  .paraErrore {
      color: #e74c3c;
-     font-size: 16px;
+     font-size: 14px;
      font-family: Arial, Helvetica, sans-serif;
      padding: 3px;
      text-transform: lowercase;
@@ -25,7 +25,7 @@
      height: 100%;
      padding: 12px;
      display: grid;
-     gap: 0.5rem;
+     gap: 0.2rem;
      grid-template-columns: repeat(12, 1fr);
      grid-template-rows: repeat(6, 1fr);
      justify-items: center;
@@ -33,7 +33,7 @@
  }
 
  .items {
-     border-radius: 15px;
+     border-radius: 12px;
      width: 100%;
      height: 100%;
  }
@@ -41,29 +41,34 @@
  .item-1 {
      grid-column: 1 / 13;
      grid-row: 1/3;
-     background: #d9d4d462;
-     padding: 12px;
+     background: #65646462;
+     padding: 8px;
  }
-.item-1-counter{
-    width:100%x;
-    height: 40px;
-    color: #00b3ff;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
+
+ .item-1-counter {
+     width: 100%;
+     height: 40px;
+     font-weight: bold;
+     font-size: 20px;
+     color: #00ffff;
+     display: flex;
+     flex-direction: row;
+     justify-content: space-between;
+     align-items: center;
+ }
+
  button {
      color: azure;
      cursor: pointer;
      padding: 8px 14px;
      width: 150px;
      border-radius: 5px;
-     background: green;
-     border: 1px solid rgb(3, 235, 3);
+     background: #003bebd8;
+     border: 1px solid rgb(3, 235, 208);
  }
 
  .item-2 {
+     position: relative;
      grid-column: 1/13;
      grid-row: 3/7;
      display: grid;
@@ -77,6 +82,81 @@
      background-position: center;
      background-attachment: scroll;
      background-size: 106% 100%;
+     overflow: hidden;
+ }
+
+ .plusWorker {
+     margin: 2px;
+     background: #000;
+     cursor: pointer;
+     width: 40px;
+     height: 40px;
+ }
+
+ .model {
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     background: #01491ba3;
+     display: none;
+ }
+
+ .BriefInfos {
+     min-width: 360px;
+     max-width: 767px;
+     height: 100%;
+     margin: 2px auto;
+     background: #b3b0b0f0;
+     display: block;
+     flex-direction: row;
+     justify-content: center;
+     padding: 6px;
+ }
+
+ .infosWorker {
+     width: 90%;
+     height: 100%;
+     background: #e9d0d0;
+     margin: auto;
+     padding: 1rem;
+     display: none;
+ }
+
+ .infosWorker-profielTitle {
+     color: #0295d4;
+     display: flex;
+     justify-content: space-between;
+     border-bottom: 2px solid #cc3a3a35;
+ }
+
+ #closeProfile {
+     width: 20px;
+     height: 20px;
+ }
+
+ .infosWorker-workerNom {
+     padding: 15px 0;
+     display: flex;
+     gap: 1rem;
+ }
+
+ #profilePicture {
+     width: 140px;
+     height: 140px;
+     border-radius: 50%;
+ }
+
+ .contactWorker {
+     background: #4341415e;
+     border-radius: 15px;
+     padding: 1rem 0.5rem;
+ }
+
+ .contactWorker-conact {
+     color: black;
+     font-weight: bold;
  }
 
  .elements {
@@ -120,13 +200,14 @@
      grid-row: 9/13;
      margin-right: 8px;
  }
+
  .Register {
      position: absolute;
      top: 0;
      left: 0;
      background: #d8d6d280;
      backdrop-filter: blur(5px);
-     padding: 20px 0;
+     padding: 1rem 0;
      width: 100%;
      /*display: none;*/
  }
@@ -147,35 +228,42 @@
 
  form {
      position: relative;
-     width: 85%;
+     top: 0;
+     width: 90%;
      background: rgba(245, 245, 245, 0.886);
      border-radius: 20px;
      padding: 40px 15px;
      margin: 5px auto;
+    color: #40c403;
  }
 
- .text-center {
+ .textcenter {
      color: #36a403;
      font-weight: bold;
-     text-transform: uppercase;
-     font-size: 24px;
+     font-size: 20px;
+     display: block;
+     padding: 20px 10px;
+     margin: 5px auto;
+ }
+.text-center{
+     font-weight: 400;
+     text-transform:capitalize;
      display: block;
      text-align: center;
-     padding: 20px 10px;
- }
-
+     padding: 16px 10px;
+}
  #defaultphoto {
      display: block;
      margin: 10px auto;
      width: 50px;
      height: 50px;
-     border-radius: 55px;
+     border-radius: 50%;
  }
 
  .inputs>label {
      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
      position: absolute;
-     top: -12px;
+     top: -8px;
      left: 0px;
      font-size: 16px;
  }
@@ -223,9 +311,9 @@
  }
 
  #addExp {
-     margin: 10px;
+     margin: 10px auto;
      text-transform: uppercase;
-     background: #48f404;
+     background: #0470f4;
  }
 
  .ExpPro {
@@ -239,7 +327,7 @@
      padding: 6px;
      border: 1px solid #39f405ff;
      border-radius: 15px;
-     width: 90%;
+     width: fit-content;
      margin: 0.4rem;
      font-size: 14px;
      font-family: Arial, Helvetica, sans-serif;
@@ -248,83 +336,100 @@
 
  .saveWorker,
  .Cancel {
-     color: #401010;
+     color: whitesmoke;
      background-color: #e74c3c;
-     outline: none;
      border: 0;
      padding: 10px 20px;
-     text-transform: uppercase;
-     border-radius: 4px;
+     border-radius: 6px;
      cursor: pointer;
+     margin:4px auto;
  }
 
  .saveWorker {
-     background: #48f404;
+     background: #0470f4;
  }
- .rolesList{
-    background: #f99705e1;
-    border: 1px solid #0295d4;
-    padding: 5px;
+
+ .rolesList {
+     background: #f99705e1;
+     border: 1px solid #0295d4;
+     padding: 5px;
  }
-.Workers{
-    background: #840c0ccf;
-    width: 50%;
-    padding: 10px;
-    margin: 5px auto;
-    color: black;
-    font-size: 20px;
-    display: block;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    border-radius: 15px;
-}
+
  .EnAtend {
-     margin-top: 10px;
-     padding: 3px;
-     border: 2px dashed #02ff02e4;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 250px;
+    height: 70px;
+    height: 70px;
+    padding: 5px;
+    margin: 5px auto;
+    font-size: 18px;
+    border-radius: 15px;
+    transition: all ease-in-out .5s;
+    cursor: pointer;
+    background: #c123238f;
+ }
+
+ .EnAtend:hover {
+     box-shadow: 2px -2px 8px rgba(176, 165, 165, 0.79);
+ }
+ .Worker {
+     width: 100%;
      display: flex;
      flex-wrap: wrap;
-     gap: 0.5rem;
+     flex-direction: row;
+     gap: 1rem;
  }
-#roleworker{
-    font-size: 14px;
-    color: #343333;
-}
-#photoworker{
-    border: #07ed07 2px solid;
-    width: 50px;
-    height: 50px;
-    border-radius:55px ;
-    overflow: hidden;
-}
-#profileWorkerPic{
-    width: 50px;
-    height: 50px;
-}
-#nomworker{
-    display: flex;
-    flex-direction: column;
-    justify-content:space-between;  
-}
-#btnEdit{
-    color: rgb(247, 212, 18);
-    background: rgb(25, 186, 44);
-    border: none;
-    width: 50px;
-    height: 50px;
-    border-radius: 55px;
 
-}
+ .photoworker {
+     border: #07ed07 2px solid;
+     width: 50px;
+     height: 50px;
+     border-radius: 50%;
+     overflow: hidden;
+ }
+
+ .profileWorkerPic {
+     width: 50px;
+     height: 50px;
+ }
+
+ .nomworker {
+     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+ }
+
+ .roleworker {
+     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+     color: #a89d00;
+ }
+
+ .btnEdit {
+     border: none;
+     width: 40px;
+     height: 40px;
+     border-radius: 50%;
+     overflow: hidden;
+ }
+
  @media (min-width:768px) {
+
      .item-1 {
-         grid-column: 1/13;
-         grid-row: 1/3;
+         margin: auto 15px;
      }
 
-
      .item-2 {
-         grid-column: 1/13;
-         grid-row: 3/7;
+
          padding: 5px;
+     }
+
+     .infosWorker {
+         width: 480px;
      }
 
      .elem-1 {
@@ -338,11 +443,11 @@
      }
 
      button {
-         width: 200px;
+         width: 180px;
          font-size: 16px;
      }
 
-     .EnAtend {
+     /* .EnAtend {
          margin-top: 10px;
          height: 80%;
          width: 100%;
@@ -350,7 +455,7 @@
          display: flex;
          flex-wrap: wrap;
          align-items: center;
-     }
+     } */
 
      form {
          width: 60%;
@@ -372,6 +477,12 @@
      .paraExperience {
          width: 40%;
      }
+
+     .Worker {
+         gap: 0.6rem;
+     }
+
+
  }
 
  @media (min-width:1024px) {
@@ -382,12 +493,17 @@
      .item-1 {
          grid-column: 1/2;
          grid-row: 1/13;
+         padding: 8px 4px;
      }
 
      .item-2 {
          grid-column: 2/13;
          grid-row: 1/13;
-         padding: 5px;
+         padding: 2px;
+     }
+
+     .infosWorker {
+         width: 550px;
      }
 
      button {
@@ -405,7 +521,7 @@
      }
 
      .closeModel {
-         width: 50px;
+         width: 40px;
          left: 92%;
      }
 
@@ -416,12 +532,59 @@
      .paraExperience {
          width: 40%;
      }
+
+     .EnAtend {
+         display: flex;
+         flex-direction: row;
+         width: 100%;
+         height: 70px;
+         padding: 5px;
+         margin: 5px 0;
+         font-size: 16px;
+         background: #f7230274;
+     }
+
+     .enAtend {
+         display: flex;
+         flex-wrap: wrap;
+         flex-direction: row;
+         align-items: center;
+         gap: 0.5rem;
+         padding: 0;
+         margin: auto;
+         height: 95%;
+     }
+
+     .Worker {
+         width: 280px;
+     }
+
+     .photoworker {
+         width: 40px;
+         height: 40px;
+         border-radius: 50%;
+     }
+
+     .BriefInfos {
+         width: 500px;
+         height: 80%;
+         margin:auto;
+         padding: 10px;
+         border-radius: 15px;
+         display: flex;
+         align-items: center;
+     }
  }
 
  @media (min-width:1280px) {
      .container {
          gap: 1rem;
          font-size: 24px;
+     }
+
+     .item-1 {
+         padding: 8px;
+         justify-content: space-between;
      }
 
      .elem-1 {
@@ -434,6 +597,10 @@
          grid-row: 5/13;
      }
 
+     .infosWorker {
+         width: 550px;
+     }
+
      .elem-3 {
          grid-column: 7/10;
          grid-row: 1/5;
@@ -443,11 +610,6 @@
      .elem-6 {
          margin-right: 20px;
      }
-     button {
-         font-size: 22px;
-         width: 270px;
-         padding: 15px 50px;
-     }
 
      #addExp,
      .Cancel,
@@ -456,24 +618,34 @@
          padding: 10px 5px;
          width: 40%;
      }
-     .Register {
-         padding: 50px;
-     }
+
+
      form {
          width: 600px;
      }
+
      .text-center {
          padding: 30px 40px;
      }
+
      .closeModel {
-         width: 50px;
+         width: 45px;
          left: 95%;
          top: 5%;
      }
+
      .elements {
          font-size: 22px;
      }
+
      .paraExperience {
          width: 30%;
      }
+     .BriefInfos {
+     width: 500px;
+     height: 80%;
+     margin: auto;
+     background: #b3b0b0f0;
+     padding: 15px;
+ }
  }

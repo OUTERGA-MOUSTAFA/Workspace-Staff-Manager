@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="L’entreprise WorkSphere souhaite disposer d’une application web innovante dédiée à la gestion visuelle et interactive du personnel au sein de ses espaces de travail.">
+    <meta name="keywords" content="ordinateur, tablette, smartphone,Add New Worker,Unassigned Staff,Unassigned,Workspace Staff Manager">
     <title>WorkSpare</title>
     <link rel="stylesheet" href="/assets/style.css">
 </head>
@@ -15,41 +17,66 @@
                 <button type="button" id="addWorker">Add New Worker</button>
                 <div id="counterWorker"></div>
             </div>
-            <div class="EnAtend">
-            </div>
+            <div class="enAtend"></div>
         </div>
         <div class="items item-2">
             <div class="elements elem-1">
                 <h3>Salle conférence</h3>
-                <img src="images/plus.png" alt="add worker" id="salleConference">
+                <img src="images/plus.png" alt="add worker" class="plusWorker" id="SalleConference">
+                <div class="model">
+                    <div class="infosWorker">
+                        <div class="infosWorker-profielTitle">
+                            <h2>Profile</h2>
+                            <img src="images/close.png" alt="close page" id="closeProfile">
+                        </div>
+                        <div class="infosWorker-workerNom">
+                            <img src="images/dev.svg" alt="worker picture" id="profilePicture">
+                            <div class="infosWorker-workerNom-Titlenom">
+                                <h2>Marten</h2>
+                                <p class="roleworker">it</p>
+                            </div>
+                        </div>
+                        <div class="contactWorker">
+                            <p><span class="contactWorker-conact">email: </span>edxwq@dsq.ds</p>
+                            <p><span class="contactWorker-conact">phone: </span>0658475</p>
+                            <p><span class="contactWorker-conact">Location: </span>Unassigned</p>
+                        </div>
+                        <div class="work-Experiences">
+
+                        </div>
+                    </div>
+                    <div class="BriefInfos">
+                        
+                    </div>
+                </div>
             </div>
             <div class="elements elem-2">
                 <h3>Réception</h3>
-                <img src="images/plus.png" alt="add worker" id="salleReception">
+                <img src="images/plus.png" alt="add worker" class="plusWorker" id="SalleReception">
             </div>
             <div class="elements elem-3">
                 <h3>Salle des serveurs</h3>
-                <img src="images/plus.png" alt="add worker" id="salleServer">
+                <img src="images/plus.png" alt="add worker" class="plusWorker" id="SalleServer">
             </div>
             <div class="elements elem-5">
                 <h3>Salle de sécurité</h3>
-                <img src="images/plus.png" alt="add worker" id="salleSecite">
+                <img src="images/plus.png" alt="add worker" class="plusWorker" id="SalleSecurie">
             </div>
             <div class="elements elem-6">
                 <h3>Salle du personnel</h3>
-                <img src="images/plus.png" alt="add worker" id="sallePersonnel">
+                <img src="images/plus.png" alt="add worker" class="plusWorker" id="SallePersonnel">
             </div>
             <div class="elements elem-4">
                 <h3>Salle archive</h3>
-                <img src="images/plus.png" alt="add worker" id="salleArchive">
+                <img src="images/plus.png" alt="add worker" class="plusWorker" id="SalleArchive">
             </div>
         </div>
     </div>
 
     <div class="Register">
-            <img src="images/close.png" alt="close Model" class="closeModel">
+        <img src="images/close.png" alt="close Model" class="closeModel">
         <form id="addworkers" class="text-center">
-            <span class="text-center">Ajouter un Employé(e)</span>
+            <span class="textcenter">Ajouter un Employé(e)</span>
             <div class="inputs">
                 <label for="Nom">Nom</label>
                 <input type="text" name="Nom" id="Nom">
@@ -66,26 +93,26 @@
             <div class="inputs">
                 <label for="photo">Photo</label>
                 <input type="url" id="photo" placeholder="https://example.com/photo.jpg">
-                <img id="defaultphoto" src="images/profile.svg" width="100">
+                <img id="defaultphoto" alt="default picture" src="images/profile.svg" min-width="100">
             </div>
-            <div class="inputs" >
+            <div class="inputs">
                 <label for="Experiences">Expériences professionnelles: </label>
                 <div class="experiences">
                     <label for="Company">Company</label>
                     <input type="text" name="Company" id="Company">
-                <p id="paracompany" class="paraErrore"></p>
-                    <label for="roleCompany">Role</label>
-                    <input type="text" name="roleCompany" id="role">
-                <p id="pararolecompany" class="paraErrore"></p>
-                    <label for="fromdate">From</label>
-                    <input type="date" name="fromdate" id="fromDate">
-                <p id="parafromdate" class="paraErrore"></p>
-                    <label for="todate">To</label>
-                    <input type="date" name="todate" id="toDate">
-                <p id="paratodate" class="paraErrore"></p>
-                <div  class="ExpPro">
-                    
-                </div>
+                    <p id="paracompany" class="paraErrore"></p>
+                    <label for="role">Role</label>
+                    <input type="text" name="role" id="role">
+                    <p id="pararolecompany" class="paraErrore"></p>
+                    <label for="fromDate">From</label>
+                    <input type="date" name="fromDate" id="fromDate">
+                    <p id="parafromdate" class="paraErrore"></p>
+                    <label for="Todate">To</label>
+                    <input type="date" name="Todate" id="toDate">
+                    <p id="paratodate" class="paraErrore"></p>
+                    <div class="ExpPro">
+
+                    </div>
                     <button id="addExp">Add Experience</button>
                 </div>
             </div>
@@ -102,20 +129,6 @@
             </div>
             <button class="saveWorker">Save Worker</button>
             <button type="reset" class="Cancel">Cancel</button>
-            <div class="Workers">
-                <div id="photoworker" ><img src="images/profile.svg" alt="profile Worker pic" id="profileWorkerPic"></div>
-                <div id="nomworker" ><p>hello</p> <p id="roleworker">titre</p></div>
-                <button id="btnEdit">Edit</button>
-            </div> <div class="Workers">
-                <div id="photoworker" ><img src="images/profile.svg" alt="profile Worker pic" id="profileWorkerPic"></div>
-                <div id="nomworker" ><p>hello</p> <p id="roleworker">titre</p></div>
-                <button id="btnEdit">Edit</button>
-            </div>
-             <div class="Workers">
-                <div id="photoworker" ><img src="images/profile.svg" alt="profile Worker pic" id="profileWorkerPic"></div>
-                <div id="nomworker" ><p>hello</p> <p id="roleworker">titre</p></div>
-                <button id="btnEdit">Edit</button>
-            </div>
         </form>
     </div>
 
