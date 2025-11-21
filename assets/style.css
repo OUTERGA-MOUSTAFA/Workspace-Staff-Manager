@@ -17,7 +17,25 @@
      padding: 3px;
      text-transform: lowercase;
  }
+.enAtend, .BriefInfos {
+    width: 100%;
+    height: 80%; 
+    overflow-y: auto;    /* enables vertical scrolling */
+    overflow-x: hidden;  /* optional — prevents horizontal scroll */
+    margin-top: 5px;
+}
+.enAtend::-webkit-scrollbar, .BriefInfos::-webkit-scrollbar{
+    width: 6px;
+}
 
+.enAtend::-webkit-scrollbar-thumb, .BriefInfos::-webkit-scrollbar-thumb{
+    background: #888;
+    border-radius: 4px;
+}
+
+.enAtend::-webkit-scrollbar-thumb:hover,.BriefInfos::-webkit-scrollbar-thumb:hover{
+    background: #555;
+}
  .container {
      color: azure;
      background: #343333;
@@ -87,7 +105,6 @@
 
  .plusWorker {
      margin: 2px;
-     background: #000;
      cursor: pointer;
      width: 40px;
      height: 40px;
@@ -101,6 +118,7 @@
      height: 100%;
      background: #01491ba3;
      display: none;
+     text-align: center;
  }
   #closeBriefInfos {
     position: absolute;
@@ -140,12 +158,13 @@
 
 
  .infosWorker {
-     width: 60%;
-     height: 100%;
-     background: #8f0b0bb6;
-     margin: auto;
-     padding: 1rem;
-     display: none;
+    position: absolute;
+    width: 60%;
+    height: 100%;
+    background: #8f0b0bb6;
+    margin: auto;
+    padding: 1rem;
+    display: none;
  }
 .work-Experiences{
     background: #000;
@@ -388,19 +407,18 @@
     font-size: 12px;
     font-weight: 300;
     z-index: 1;
-     display: flex;
-     flex-direction: row;
-     align-items: center;
-     justify-content: space-evenly;
-     width: 250px;
-     height: 70px;
-     padding: 5px;
-     margin: 5px auto;
-     font-size: 18px;
-     border-radius: 15px;
-     transition: all ease-in-out .5s;
-     cursor: pointer;
-     background: #c123238f;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 250px;
+    height: 70px;
+    padding: 5px;
+    margin: 5px auto;
+    font-size: 18px;
+    border-radius: 15px;
+    transition: all ease-in-out .5s;
+    background: #c123238f;
  }
 
  .EnAtend:hover {
@@ -408,11 +426,12 @@
  }
 
  .Worker {
-     width: 85%;
+     width: 80%;
      display: flex;
      flex-wrap: wrap;
      flex-direction: row;
      gap: 1rem;
+     /* margin:2px auto; */
  }
 
  .photoworker {
@@ -439,6 +458,7 @@
  .roleworker {
      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
      color: #a89d00;
+     font-weight: 300;
  }
 
  .btnEdit {
@@ -447,6 +467,7 @@
      height: 30px;
      border-radius: 50%;
      overflow: hidden;
+     cursor: pointer;
  }
 
  @media (min-width:768px) {
@@ -585,10 +606,6 @@
          padding: 0;
          margin: auto;
          height: 95%;
-     }
-
-     .Worker {
-         width: 280px;
      }
 
      .photoworker {

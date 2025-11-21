@@ -24,22 +24,9 @@ let counteur = 0
 const item1 = document.querySelector('.item-1')
 let classWorker = document.querySelector('.BriefInfos')
 
-
-/*---------------close Modal------------------------*/
-closeModal.addEventListener('click', () => {
-    Modal.style.display = 'none'
-})
-/*--------------Open Modal--------------------------*/
-addWorker.addEventListener('click', () => {
-    Modal.style.display = 'block'
-})
-
 const modalProfile = document.querySelector('.model')
 const infosWorker = document.querySelector('.infosWorker')
-document.querySelector('#closeProfile').addEventListener('click', () => {
-    infosWorker.style.display = 'none'
-    modalProfile.style.display = 'none'
-})
+
 document.querySelector('#closeBriefInfos').addEventListener('click', () => {
     modalProfile.style.display = 'none'
 })
@@ -127,7 +114,7 @@ function errosHandling() {
 
     let selectedRole = Roles.value;
     let emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-    let regexphone = /^\+212|0[6-7][0-9]{8}$/
+    let regexphone = /^(\+212|0)[6-7][0-9]{8}$/
     let nomRegex = /^[a-zA-ZÀ-ÿ\s]{5,30}$/
 
     paranom.textContent = !nomRegex.test(nom.value.trim()) ? 'Nom non valide' : ""
@@ -150,30 +137,66 @@ function urlValidation() {
     }
 }
 
-function profiles(classWorker, img, tableworkers='') {
+function profiles(classWorker, img, tableworkers) {
 
+    classWorker.innerHTML = ""
     let Worker = document.createElement('div');
     console.log("Worker table profile: ", tableworkers)
     Worker.className = "Worker"
-    classWorker.innerHTML = ""
     Worker.innerHTML = tableworkers.map((elem) =>
         ` 
-         <div class="EnAtend" onclick="addworker(${elem.id})">
-                <div class="photoworker">                
-                    <img src="${elem.photo}" alt="profile Worker pic" class="profileWorkerPic"></div>
-                <div class="nomworker">
-                    <p>${elem.Nom}</p>
-                    <p class="roleworker">${elem.Role}</p>
-                </div>
-                <img src="${img}" alt="out worker" class="btnEdit">
+        <div class="EnAtend">
+            <div class="photoworker">                
+                <img src="${elem.photo}" alt="profile Worker pic" class="profileWorkerPic"></div>
+            <div class="nomworker">
+                <p>${elem.Nom}</p>
+                <p class="roleworker">${elem.Role}</p>
             </div>
+            <img src="${img}" alt="out worker" class="btnEdit" onclick="addworker(${elem.id})">
+        </div>
             `).join('')
     classWorker.appendChild(Worker)
 }
-
+function profile(tableWorker){
+    let profille = document.querySelector('.infosWorker')
+    profille.innerHTML = ""
+    let Worker = document.createElement('div');
+    Worker.innerHTML = tableWorker.map((elem) =>`
+        <div class="infosWorker-profielTitle">
+            <h2>Profile</h2>
+            <img src="images/close.webp" alt="close page" onclick="CloseProfile()" id="closeProfile">
+        </div>
+        <div class="infosWorker-workerNom">
+            <img src="${elem.photo}" alt="worker picture" id="profilePicture">
+            <div class="infosWorker-workerNom-Titlenom">
+                <h2>${elem.Nom}</h2>
+                <p class="roleworker">${elem.Role}</p>
+            </div>
+        </div>
+        <div class="contactWorker">
+            <p><span class="contactWorker-conact">email: </span>${elem.Email}</p>
+            <p><span class="contactWorker-conact">phone: </span>${elem.telephone}</p>
+            <p><span class="contactWorker-conact">Location: </span>${elem.Zone}</p>
+        </div>
+    `).join('')
+    profille.appendChild(Worker)
+}
+/*---------------close Modal------------------------*/
+closeModal.addEventListener('click', () => {
+    Modal.style.display = 'none'
+})
+/*--------------Open Modal--------------------------*/
+addWorker.addEventListener('click', () => {
+    Modal.style.display = 'block'
+})
+/**-------- CloseProfile this function used becaus on click on icone close profile that is exist in js part */
+function CloseProfile() {
+    infosWorker.style.display = 'none'
+    modalProfile.style.display = 'none'
+}
 function EnAtendWorkers() {
     let enAtend = document.querySelector('.enAtend')
-    let img = "images/check.webp"
+    let img = "images/edit.webp"
     profiles(enAtend, img, workers)
 }
 
@@ -193,7 +216,7 @@ function formValidation() {
             Experiences: [...TableExp],
             Email: email.value,
             Telephone: telephone.value,
-            Zone: null
+            Zone: 'Unassigned Staff'
         }
         document.querySelector('.ExpPro').innerHTML = ""
         workers.unshift(addWorker)
@@ -214,17 +237,26 @@ function addworker(idWorkerSelected){
         }
 
     }
+
     let buttonEdit = document.querySelector('#btnEdit')
-    EnAtend.addEventListener('click',()=>{
-        infosWorker.style.display = 'flex'
+    btnEdit.addEventListener('click',()=>{
+        infosWorker.style.display = 'block'
     })
+    // refresh enAtende Table
     EnAtendWorkers()
+    // envoyer workers of salle conference salleConference
+    
+    let btnDelete = enAtend.className('btndelete')
+    let img = "images/delete.webp"
+    profiles(classWorker, img, salleConference)
 }
 
 /******** Salle function get worker table filtred and full *************************************************** */
 
 function Salle(emp) {
-    let img = "images/plus.webp"
+    let img = "images/ajouter.webp"
+    
+    img.className = 'btnAjouter'
     profiles(classWorker, img, emp)
 }
 
@@ -251,7 +283,7 @@ document.querySelector('#SalleConference').addEventListener('click', () => {
     }
     let employeur = []
     workers.map(elem =>
-        elem.Zone == null ? employeur.push(elem) : 0
+        elem.Zone == 'Unassigned Staff' ? employeur.push(elem) : 0
     )
     modalProfile.style.display = 'block'
     Salle(employeur)
@@ -265,7 +297,7 @@ document.querySelector('#SalleReception').addEventListener('click', () => {
     }
      let employeur = []
     workers.map(elem =>
-        elem.Zone == null && (elem.Role === "Receptionest" || elem.Role === "Manager" || elem.Role === "Nettoyage") ? employeur.push(elem) : 0
+        elem.Zone == 'Unassigned Staff' && (elem.Role === "Receptionest" || elem.Role === "Manager" || elem.Role === "Nettoyage") ? employeur.push(elem) : 0
     )
     modalProfile.style.display = 'block'
     Salle(employeur)
@@ -279,7 +311,7 @@ document.querySelector('#SalleServer').addEventListener('click', () => {
     }
     let employeur = []
     workers.map(elem =>
-        elem.Zone == null && (elem.Role === "Serveur" || elem.Role === "Manager" || elem.Role === "Nettoyage") ? employeur.push(elem) : 0
+        elem.Zone == 'Unassigned Staff' && (elem.Role === "Serveur" || elem.Role === "Manager" || elem.Role === "Nettoyage") ? employeur.push(elem) : 0
     )
     modalProfile.style.display = 'block'
     Salle(employeur)
@@ -295,7 +327,7 @@ document.querySelector('#SalleSecurie').addEventListener('click', () => {
     }
     let employeur = []
     workers.map(elem =>
-        elem.Zone == null && (elem.Role === "Sécurité" || elem.Role === "Manager" || elem.Role === "Nettoyage") ? employeur.push(elem) : 0
+        elem.Zone == 'Unassigned Staff' && (elem.Role === "Sécurité" || elem.Role === "Manager" || elem.Role === "Nettoyage") ? employeur.push(elem) : 0
     )
     modalProfile.style.display = 'block'
     Salle(employeur)
@@ -309,7 +341,7 @@ document.querySelector('#SallePersonnel').addEventListener('click', () => {
     }
     let employeur = []
     workers.map(elem =>
-        elem.Zone == null ? employeur.push(elem) : 0
+        elem.Zone == 'Unassigned Staff' ? employeur.push(elem) : 0
     )
     modalProfile.style.display = 'block'
     Salle(employeur)
@@ -325,7 +357,7 @@ document.querySelector('#SalleArchive').addEventListener('click', () => {
     }
     let employeur = []
     workers.map(elem =>
-        elem.Zone == null && elem.Role != "Nettoyage" ? employeur.push(elem) : 0
+        elem.Zone == 'Unassigned Staff' && elem.Role != "Nettoyage" ? employeur.push(elem) : 0
     )
     modalProfile.style.display = 'block'
     Salle(employeur)
