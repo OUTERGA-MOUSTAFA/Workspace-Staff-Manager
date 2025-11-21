@@ -48,7 +48,7 @@
  .item-1-counter {
      width: 100%;
      height: 40px;
-     font-weight: bold;
+     font-weight: 300;
      font-size: 20px;
      color: #00ffff;
      display: flex;
@@ -77,7 +77,7 @@
      gap: 0.1rem;
      justify-content: space-around;
      align-content: start;
-     background-image: url('/images/plan.jpg');
+     background-image: url('/images/plan.webp');
      background-repeat: no-repeat;
      background-position: center;
      background-attachment: scroll;
@@ -102,53 +102,62 @@
      background: #01491ba3;
      display: none;
  }
-
+  #closeBriefInfos {
+    position: absolute;
+    z-index: 1;
+    top: 2%;
+    right: 2%;
+    width: 30px;
+    height: 30px;
+    padding: 2px;
+    background: rgb(1, 255, 1);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all .8s ease-in;
+ }
+#closeBriefInfos:hover{
+    rotate: 220deg;
+}
+ #closeProfile {
+     width: 20px;
+     height: 20px;
+     border-radius: 50%;
+ }
+ 
  .BriefInfos {
      position: relative;
-     top: 0;
-     left: 0;
+     bottom: 0;
      min-width: 360px;
      max-width: 767px;
-     height: 100%;
+     height: 90%;
      margin: 2px auto;
-     background: #b3b0b0f0;
+     background: #008707e6;
      display: block;
      flex-direction: row;
      justify-content: center;
      padding: 6px;
  }
 
- #closeBriefInfos {
-     position: absolute;
-     z-index: 100;
-     top: 2%;
-     right: 1%;
-     width: 35px;
-     height: 35px;
-     border-radius: 50%;
- }
 
  .infosWorker {
-     width: 90%;
+     width: 60%;
      height: 100%;
-     background: #e9d0d0;
+     background: #8f0b0bb6;
      margin: auto;
      padding: 1rem;
      display: none;
  }
-
+.work-Experiences{
+    background: #000;
+    width: 100%;
+    height: 30%;
+}
  .infosWorker-profielTitle {
-     color: #0295d4;
+     color: #00aef9;
      display: flex;
      justify-content: space-between;
      border-bottom: 2px solid #cc3a3a35;
  }
-
- #closeProfile {
-     width: 20px;
-     height: 20px;
- }
-
  .infosWorker-workerNom {
      padding: 15px 0;
      display: flex;
@@ -218,6 +227,7 @@
      position: absolute;
      top: 0;
      left: 0;
+     z-index: 2;
      background: #d8d6d280;
      backdrop-filter: blur(5px);
      padding: 1rem 0;
@@ -227,12 +237,15 @@
 
  .closeModel {
      position: sticky;
+     padding: 3px;
      top: 1%;
-     left: 95%;
+     left: 92%;
+     z-index: 2;
      border-radius: 50%;
+     background: rgb(6, 247, 6);
      cursor: pointer;
      transition: all 1s ease-in-out;
-     width: 25px;
+     width: 30px;
  }
 
  .closeModel:hover {
@@ -371,12 +384,15 @@
  }
 
  .EnAtend {
+    position: relative;
+    font-size: 12px;
+    font-weight: 300;
+    z-index: 1;
      display: flex;
      flex-direction: row;
      align-items: center;
      justify-content: space-evenly;
      width: 250px;
-     height: 70px;
      height: 70px;
      padding: 5px;
      margin: 5px auto;
@@ -392,7 +408,7 @@
  }
 
  .Worker {
-     width: 100%;
+     width: 85%;
      display: flex;
      flex-wrap: wrap;
      flex-direction: row;
@@ -427,8 +443,8 @@
 
  .btnEdit {
      border: none;
-     width: 40px;
-     height: 40px;
+     width: 30px;
+     height: 30px;
      border-radius: 50%;
      overflow: hidden;
  }

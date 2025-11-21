@@ -19,7 +19,11 @@ const url = document.getElementById('photo')
 const Modal = document.querySelector('.Register')
 let counterWorker = document.querySelector('#counterWorker')
 let counteur = 0
+
+
 const item1 = document.querySelector('.item-1')
+let classWorker = document.querySelector('.BriefInfos')
+
 
 /*---------------close Modal------------------------*/
 closeModal.addEventListener('click', () => {
@@ -36,11 +40,8 @@ document.querySelector('#closeProfile').addEventListener('click', () => {
     infosWorker.style.display = 'none'
     modalProfile.style.display = 'none'
 })
-document.querySelector('#closeBriefInfos').addEventListener('click',()=>{
-    infosWorker.style.display = 'none'
-})
-document.querySelector('.BriefInfos').addEventListener('click', () => {
-    infosWorker.style.display = 'block'
+document.querySelector('#closeBriefInfos').addEventListener('click', () => {
+    modalProfile.style.display = 'none'
 })
 
 /*---------------Remlire list roles workers---------*/
@@ -149,15 +150,15 @@ function urlValidation() {
     }
 }
 
-function profiles(classWorker, img, tableworkers) {
+function profiles(classWorker, img, tableworkers='') {
 
     let Worker = document.createElement('div');
     console.log("Worker table profile: ", tableworkers)
     Worker.className = "Worker"
     classWorker.innerHTML = ""
     Worker.innerHTML = tableworkers.map((elem) =>
-        `  
-         <div class="EnAtend" onclick="addWorker(${elem.id})">
+        ` 
+         <div class="EnAtend" onclick="addworker(${elem.id})">
                 <div class="photoworker">                
                     <img src="${elem.photo}" alt="profile Worker pic" class="profileWorkerPic"></div>
                 <div class="nomworker">
@@ -169,9 +170,10 @@ function profiles(classWorker, img, tableworkers) {
             `).join('')
     classWorker.appendChild(Worker)
 }
+
 function EnAtendWorkers() {
     let enAtend = document.querySelector('.enAtend')
-    let img = "images/check.png"
+    let img = "images/check.webp"
     profiles(enAtend, img, workers)
 }
 
@@ -203,80 +205,30 @@ function formValidation() {
     }
 }
 
-/*********************************************************** */
-function AddWorker(id) {
-
+/*************************** Function add worker to Zone *****************************/
+function addworker(idWorkerSelected){
     for (let i = 0; i < workers.length; i++) {
-        if (roles.includes(i.Role)) {
+        if (id.includes(i.idWorkerSelected)) {
             salleConference.push(workers[i])
             workers.splice(i, 1)
         }
 
     }
-}
-/*********************************************************** */
-let classWorker = document.querySelector('.BriefInfos')
-function SalleConference() {
-    let employeur = []
-    workers.map(elem =>
-        elem.Zone == null ? employeur.push(elem) : 0
-    )
-    let img = "images/plus.png"
-    profiles(classWorker, img, employeur)
-}
-/********************************************************************************* */
-function SalleReception() {
-    let employeur = []
-    workers.map(elem =>
-        elem.Zone == null && (elem.Role === "Receptionest" || elem.Role === "Manager" || elem.Role === "Nettoyage") ? employeur.push(elem) : 0
-    )
-    let img = "images/plus.png"
-    profiles(classWorker, img, employeur)
-}
-/**************************************************************************************** */
-function SalleServer() {
-    let employeur = []
-    workers.map(elem =>
-        elem.Zone == null && (elem.Role === "Serveur" || elem.Role === "Manager" || elem.Role === "Nettoyage") ? employeur.push(elem) : 0
-    )
-    let img = "images/plus.png"
-    profiles(classWorker, img, employeur)
-}
-/******************************************************************************************* */
-
-
-function SalleSecurie() {
-    let employeur = []
-    workers.map(elem =>
-        elem.Zone == null && (elem.Role === "Sécurité" || elem.Role === "Manager" || elem.Role === "Nettoyage") ? employeur.push(elem) : 0
-    )
-    let img = "images/plus.png"
-    profiles(classWorker, img, employeur)
-}
-/******************************************************************************************* */
-
-function SallePersonnel() {
-    let employeur = []
-    workers.map(elem =>
-        elem.Zone == null ? employeur.push(elem) : 0
-    )
-    let img = "images/plus.png"
-    profiles(classWorker, img, employeur)
-}
-/******************************************************************************************* */
-
-['Nettoyage', 'Sécurité', 'Receptionest', 'Serveur', 'Manager', 'Autre rôles']
-
-function SalleArchive() {
-    let employeur = []
-    workers.map(elem =>
-        elem.Zone == null && elem.Role !="Nettoyage" ? employeur.push(elem) : 0
-    )
-    let img = "images/plus.png"
-    profiles(classWorker, img, employeur)
+    let buttonEdit = document.querySelector('#btnEdit')
+    EnAtend.addEventListener('click',()=>{
+        infosWorker.style.display = 'flex'
+    })
+    EnAtendWorkers()
 }
 
-//-----***********company btn in form
+/******** Salle function get worker table filtred and full *************************************************** */
+
+function Salle(emp) {
+    let img = "images/plus.webp"
+    profiles(classWorker, img, emp)
+}
+
+//----***********company btn in form
 addExp.addEventListener('click', (event) => {
     event.preventDefault()
     validCompany()
@@ -287,6 +239,9 @@ saveWorker.addEventListener('click', (e) => {
     e.preventDefault()
     formValidation()
 })
+
+
+// ['Nettoyage', 'Sécurité', 'Receptionest', 'Serveur', 'Manager', 'Autre rôles']
 document.querySelector('#SalleConference').addEventListener('click', () => {
     let maxSalleConference = 8
 
@@ -294,8 +249,12 @@ document.querySelector('#SalleConference').addEventListener('click', () => {
         alert('La salle de conférence est plain! merçi')
         return
     }
+    let employeur = []
+    workers.map(elem =>
+        elem.Zone == null ? employeur.push(elem) : 0
+    )
     modalProfile.style.display = 'block'
-    SalleConference()
+    Salle(employeur)
 })
 document.querySelector('#SalleReception').addEventListener('click', () => {
     let maxSalleResption = 3
@@ -304,8 +263,12 @@ document.querySelector('#SalleReception').addEventListener('click', () => {
         alert('La salle de reception est plain! merçi')
         return
     }
+     let employeur = []
+    workers.map(elem =>
+        elem.Zone == null && (elem.Role === "Receptionest" || elem.Role === "Manager" || elem.Role === "Nettoyage") ? employeur.push(elem) : 0
+    )
     modalProfile.style.display = 'block'
-    SalleReception()
+    Salle(employeur)
 })
 document.querySelector('#SalleServer').addEventListener('click', () => {
     let maxSalleDev = 2
@@ -314,8 +277,12 @@ document.querySelector('#SalleServer').addEventListener('click', () => {
         alert('La salle de reception est plain! merçi')
         return
     }
+    let employeur = []
+    workers.map(elem =>
+        elem.Zone == null && (elem.Role === "Serveur" || elem.Role === "Manager" || elem.Role === "Nettoyage") ? employeur.push(elem) : 0
+    )
     modalProfile.style.display = 'block'
-    SalleServer()
+    Salle(employeur)
 })
 
 
@@ -326,8 +293,12 @@ document.querySelector('#SalleSecurie').addEventListener('click', () => {
         alert('La salle de sécurité est plain! merçi')
         return
     }
+    let employeur = []
+    workers.map(elem =>
+        elem.Zone == null && (elem.Role === "Sécurité" || elem.Role === "Manager" || elem.Role === "Nettoyage") ? employeur.push(elem) : 0
+    )
     modalProfile.style.display = 'block'
-    SalleSecurie()
+    Salle(employeur)
 })
 document.querySelector('#SallePersonnel').addEventListener('click', () => {
     let maxSallePersonnel = 2
@@ -336,16 +307,26 @@ document.querySelector('#SallePersonnel').addEventListener('click', () => {
         alert('La salle de personnel est plain! merçi')
         return
     }
+    let employeur = []
+    workers.map(elem =>
+        elem.Zone == null ? employeur.push(elem) : 0
+    )
     modalProfile.style.display = 'block'
-    SalleConference()
+    Salle(employeur)
 })
+
+
 document.querySelector('#SalleArchive').addEventListener('click', () => {
     let maxSalleArchive = 2
 
-    if (maxSalleArchive == sallePersonnel.length) {
+    if (maxSalleArchive == salleArchives.length) {
         alert('La salle de personnel est plain! merçi')
         return
     }
+    let employeur = []
+    workers.map(elem =>
+        elem.Zone == null && elem.Role != "Nettoyage" ? employeur.push(elem) : 0
+    )
     modalProfile.style.display = 'block'
-    SalleArchive()
+    Salle(employeur)
 })
