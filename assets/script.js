@@ -230,25 +230,29 @@ function formValidation() {
 
 /*************************** Function add worker to Zone *****************************/
 function addworker(idWorkerSelected){
+    /*--------------Open Modal--------------------------*/
+    addWorker.addEventListener('click', () => {
+        Modal.style.display = 'block'
+    })
+    //let index = workers.findIndex(w => w.id === idWorkerSelected); easy way 
+
     for (let i = 0; i < workers.length; i++) {
-        if (id.includes(i.idWorkerSelected)) {
+        if (workers[i].id === idWorkerSelected) {
             salleConference.push(workers[i])
             workers.splice(i, 1)
+            return
         }
 
     }
 
-    let buttonEdit = document.querySelector('#btnEdit')
-    btnEdit.addEventListener('click',()=>{
-        infosWorker.style.display = 'block'
-    })
+    
     // refresh enAtende Table
     EnAtendWorkers()
     // envoyer workers of salle conference salleConference
     
     let btnDelete = enAtend.className('btndelete')
-    let img = "images/delete.webp"
-    profiles(classWorker, img, salleConference)
+    let img = "images/close.webp"
+    profile(salleConference)
 }
 
 /******** Salle function get worker table filtred and full *************************************************** */
