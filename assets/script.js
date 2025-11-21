@@ -245,14 +245,16 @@ function addworker(idWorkerSelected){
 
     }
 
-    
     // refresh enAtende Table
     EnAtendWorkers()
     // envoyer workers of salle conference salleConference
     
-    let btnDelete = enAtend.className('btndelete')
-    let img = "images/close.webp"
+    let classConference = document.querySelector('.elem-1')
+    img = "images/close.webp"
+    let classRemove = img.className = 'btnAjouter'
     profile(salleConference)
+    profiles(classConference,img,classRemove,salleConference)
+
 }
 
 /******** Salle function get worker table filtred and full *************************************************** */
@@ -260,8 +262,8 @@ function addworker(idWorkerSelected){
 function Salle(emp) {
     let img = "images/ajouter.webp"
     
-    img.className = 'btnAjouter'
-    profiles(classWorker, img, emp)
+    let classAjouter = img.className = 'btnAjouter'
+    profiles(classWorker, img,classAjouter, emp)
 }
 
 //----***********company btn in form

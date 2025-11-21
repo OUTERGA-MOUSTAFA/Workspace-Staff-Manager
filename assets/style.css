@@ -17,25 +17,34 @@
      padding: 3px;
      text-transform: lowercase;
  }
-.enAtend, .BriefInfos {
-    width: 100%;
-    height: 80%; 
-    overflow-y: auto;    /* enables vertical scrolling */
-    overflow-x: hidden;  /* optional — prevents horizontal scroll */
-    margin-top: 5px;
-}
-.enAtend::-webkit-scrollbar, .BriefInfos::-webkit-scrollbar{
-    width: 6px;
-}
 
-.enAtend::-webkit-scrollbar-thumb, .BriefInfos::-webkit-scrollbar-thumb{
-    background: #888;
-    border-radius: 4px;
-}
+ .enAtend,
+ .BriefInfos {
+     width: 100%;
+     height: 80%;
+     overflow-y: auto;
+     /* enables vertical scrolling */
+     overflow-x: hidden;
+     /* optional — prevents horizontal scroll */
+     margin-top: 5px;
+ }
 
-.enAtend::-webkit-scrollbar-thumb:hover,.BriefInfos::-webkit-scrollbar-thumb:hover{
-    background: #555;
-}
+ .enAtend::-webkit-scrollbar,
+ .BriefInfos::-webkit-scrollbar {
+     width: 6px;
+ }
+
+ .enAtend::-webkit-scrollbar-thumb,
+ .BriefInfos::-webkit-scrollbar-thumb {
+     background: #888;
+     border-radius: 4px;
+ }
+
+ .enAtend::-webkit-scrollbar-thumb:hover,
+ .BriefInfos::-webkit-scrollbar-thumb:hover {
+     background: #555;
+ }
+
  .container {
      color: azure;
      background: #343333;
@@ -120,28 +129,31 @@
      display: none;
      text-align: center;
  }
-  #closeBriefInfos {
-    position: absolute;
-    z-index: 1;
-    top: 2%;
-    right: 2%;
-    width: 30px;
-    height: 30px;
-    padding: 2px;
-    background: rgb(1, 255, 1);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all .8s ease-in;
+
+ #closeBriefInfos {
+     position: absolute;
+     z-index: 1;
+     top: 2%;
+     right: 2%;
+     width: 30px;
+     height: 30px;
+     padding: 2px;
+     background: rgb(1, 255, 1);
+     border-radius: 50%;
+     cursor: pointer;
+     transition: all .8s ease-in;
  }
-#closeBriefInfos:hover{
-    rotate: 220deg;
-}
+
+ #closeBriefInfos:hover {
+     rotate: 220deg;
+ }
+
  #closeProfile {
      width: 20px;
      height: 20px;
      border-radius: 50%;
  }
- 
+
  .BriefInfos {
      position: relative;
      bottom: 0;
@@ -158,25 +170,28 @@
 
 
  .infosWorker {
-    position: absolute;
-    width: 60%;
-    height: 100%;
-    background: #8f0b0bb6;
-    margin: auto;
-    padding: 1rem;
-    display: none;
+     position: absolute;
+     width: 60%;
+     height: 100%;
+     background: #8f0b0bb6;
+     margin: auto;
+     padding: 1rem;
+     display: none;
  }
-.work-Experiences{
-    background: #000;
-    width: 100%;
-    height: 30%;
-}
+
+ .work-Experiences {
+     background: #000;
+     width: 100%;
+     height: 30%;
+ }
+
  .infosWorker-profielTitle {
      color: #00aef9;
      display: flex;
      justify-content: space-between;
      border-bottom: 2px solid #cc3a3a35;
  }
+
  .infosWorker-workerNom {
      padding: 15px 0;
      display: flex;
@@ -302,8 +317,10 @@
  #defaultphoto {
      display: block;
      margin: 10px auto;
-     width: 50px;
-     height: 50px;
+     min-width: 50px;
+     max-width: 80px;
+     min-height: 50px;
+     max-height: 80px;
      border-radius: 50%;
  }
 
@@ -403,22 +420,22 @@
  }
 
  .EnAtend {
-    position: relative;
-    font-size: 12px;
-    font-weight: 300;
-    z-index: 1;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-    width: 250px;
-    height: 70px;
-    padding: 5px;
-    margin: 5px auto;
-    font-size: 18px;
-    border-radius: 15px;
-    transition: all ease-in-out .5s;
-    background: #c123238f;
+     position: relative;
+     font-size: 12px;
+     font-weight: 300;
+     z-index: 1;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: space-evenly;
+     width: 250px;
+     height: 70px;
+     padding: 5px;
+     margin: 5px auto;
+     font-size: 18px;
+     border-radius: 15px;
+     transition: all ease-in-out .5s;
+     background: #c123238f;
  }
 
  .EnAtend:hover {
@@ -629,6 +646,7 @@
          height: 40px;
          transition: all ease .8s;
      }
+
      #closeBriefInfos:hover {
          rotate: 360deg;
      }
@@ -707,11 +725,13 @@
          background: #b3b0b0f0;
          padding: 15px;
      }
-      #closeBriefInfos {
+
+     #closeBriefInfos {
          width: 40px;
          height: 40px;
          transition: all ease .8s;
      }
+
      #closeBriefInfos:hover {
          rotate: 360deg;
      }
