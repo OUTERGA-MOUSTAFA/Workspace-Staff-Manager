@@ -10,6 +10,17 @@
      height: 100%;
  }
 
+ footer {
+     color: azure;
+     background: #01071d;
+     min-width: 100%;
+     padding: 12px;
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: center;
+     align-items: center;
+ }
+
  .paraErrore {
      color: #e74c3c;
      font-size: 14px;
@@ -19,6 +30,7 @@
  }
 
  .enAtend,
+ .Worker,
  .BriefInfos {
      width: 100%;
      height: 80%;
@@ -30,11 +42,13 @@
  }
 
  .enAtend::-webkit-scrollbar,
+ .Worker::-webkit-scrollbar,
  .BriefInfos::-webkit-scrollbar {
      width: 6px;
  }
 
  .enAtend::-webkit-scrollbar-thumb,
+ .Worker::-webkit-scrollbar-thumb,
  .BriefInfos::-webkit-scrollbar-thumb {
      background: #888;
      border-radius: 4px;
@@ -115,8 +129,8 @@
  .plusWorker {
      margin: 2px;
      cursor: pointer;
-     width: 40px;
-     height: 40px;
+     width: 20px;
+     height: 20px;
  }
 
  .model {
@@ -127,7 +141,7 @@
      height: 100%;
      background: #01491ba3;
      display: none;
-     text-align: center;
+     align-content: center;
  }
 
  #closeBriefInfos {
@@ -138,14 +152,14 @@
      width: 30px;
      height: 30px;
      padding: 2px;
-     background: rgb(1, 255, 1);
+     background: #01ff01;
      border-radius: 50%;
      cursor: pointer;
      transition: all .8s ease-in;
  }
 
  #closeBriefInfos:hover {
-     rotate: 220deg;
+     rotate: 360deg;
  }
 
  #closeProfile {
@@ -156,24 +170,26 @@
 
  .BriefInfos {
      position: relative;
-     bottom: 0;
-     min-width: 360px;
+     width: 300px;
      max-width: 767px;
      height: 90%;
      margin: 2px auto;
-     background: #008707e6;
-     display: block;
+     background: #2c1b00e6;
+     display: flex;
      flex-direction: row;
      justify-content: center;
+     align-items: flex-end;
      padding: 6px;
+     border-radius: 10px;
+     box-shadow: #888 2px -2px 20px;
  }
 
 
  .infosWorker {
      position: absolute;
-     width: 60%;
+     width: 80%;
      height: 100%;
-     background: #8f0b0bb6;
+     background: #380101b6;
      margin: auto;
      padding: 1rem;
      display: none;
@@ -276,10 +292,11 @@
      left: 92%;
      z-index: 2;
      border-radius: 50%;
-     background: rgb(6, 247, 6);
+     background: #06f706;
      cursor: pointer;
      transition: all 1s ease-in-out;
      width: 30px;
+     height: 30px;
  }
 
  .closeModel:hover {
@@ -290,7 +307,7 @@
      position: relative;
      top: 0;
      width: 90%;
-     background: rgba(245, 245, 245, 0.886);
+     background: #eae8e8e2;
      border-radius: 20px;
      padding: 40px 15px;
      margin: 5px auto;
@@ -299,7 +316,7 @@
 
  .textcenter {
      color: #36a403;
-     font-weight: bold;
+     font-weight: 300;
      font-size: 20px;
      display: block;
      padding: 20px 10px;
@@ -421,34 +438,33 @@
 
  .EnAtend {
      position: relative;
-     font-size: 12px;
-     font-weight: 300;
+     font-size: 10px;
      z-index: 1;
      display: flex;
      flex-direction: row;
-     align-items: center;
      justify-content: space-evenly;
+     align-items: ;
      width: 250px;
      height: 70px;
      padding: 5px;
      margin: 5px auto;
-     font-size: 18px;
+     font-size: 14px;
      border-radius: 15px;
-     transition: all ease-in-out .5s;
-     background: #c123238f;
+     transition: all ease-in-out .3s;
+     background: #df2100b3;
  }
 
  .EnAtend:hover {
-     box-shadow: 2px -2px 8px rgba(176, 165, 165, 0.79);
+     box-shadow: 2px -2px 8px #777171c9;
  }
 
  .Worker {
-     width: 80%;
+     width: 100%;
+     height: 98%;
      display: flex;
      flex-wrap: wrap;
      flex-direction: row;
      gap: 1rem;
-     /* margin:2px auto; */
  }
 
  .photoworker {
@@ -457,6 +473,9 @@
      height: 50px;
      border-radius: 50%;
      overflow: hidden;
+     display: flex;
+     justify-content: center;
+     align-items: center;
  }
 
  .profileWorkerPic {
@@ -517,18 +536,8 @@
          font-size: 16px;
      }
 
-     /* .EnAtend {
-         margin-top: 10px;
-         height: 80%;
-         width: 100%;
-         border: 2px dashed green;
-         display: flex;
-         flex-wrap: wrap;
-         align-items: center;
-     } */
-
      form {
-         width: 60%;
+         width: 450px;
      }
 
      .inputs {
@@ -536,7 +545,8 @@
      }
 
      .closeModel {
-         width: 40px;
+         width: 30px;
+         height: 30px;
          left: 88%;
      }
 
@@ -552,7 +562,18 @@
          gap: 0.6rem;
      }
 
+     .BriefInfos {
+         width: 70%;
+     }
 
+     .EnAtend {
+         width: 260px;
+     }
+     
+ .plusWorker {
+     width: 25px;
+     height: 25px;
+ }
  }
 
  @media (min-width:1024px) {
@@ -573,21 +594,15 @@
      }
 
      .infosWorker {
-         width: 550px;
+         width: 100%;
      }
 
      button {
          font-size: 18px;
      }
 
-     .EnAtend {
-         margin-top: 10px;
-         height: 92%;
-         flex-direction: column;
-     }
-
      form {
-         width: 45%;
+         width: 500px;
      }
 
      .closeModel {
@@ -604,23 +619,21 @@
      }
 
      .EnAtend {
-         display: flex;
-         flex-direction: row;
-         width: 100%;
-         height: 70px;
-         padding: 5px;
-         margin: 5px 0;
          font-size: 16px;
-         background: #f7230274;
+         width: 240px;
+     }
+
+     .Worker {
+         width: 100%;
      }
 
      .enAtend {
          display: flex;
          flex-wrap: wrap;
          flex-direction: row;
-         align-items: center;
+         justify-content: center;
+         width: 100%;
          gap: 0.5rem;
-         padding: 0;
          margin: auto;
          height: 95%;
      }
@@ -632,8 +645,8 @@
      }
 
      .BriefInfos {
-         width: 500px;
-         height: 80%;
+         width: 50%;
+         height: 100%;
          margin: auto;
          padding: 10px;
          border-radius: 15px;
@@ -650,6 +663,14 @@
      #closeBriefInfos:hover {
          rotate: 360deg;
      }
+     
+ .plusWorker {
+     width: 30px;
+     height: 30px;
+ }
+ h5{
+    font-size: 20px;
+ }
  }
 
  @media (min-width:1280px) {
@@ -697,7 +718,7 @@
 
 
      form {
-         width: 600px;
+         width: 550px;
      }
 
      .text-center {
@@ -706,6 +727,7 @@
 
      .closeModel {
          width: 45px;
+         height: 45px;
          left: 95%;
          top: 5%;
      }
@@ -719,11 +741,34 @@
      }
 
      .BriefInfos {
-         width: 500px;
+         width: 450px;
          height: 80%;
-         margin: auto;
-         background: #b3b0b0f0;
-         padding: 15px;
+         padding: 20px 80px;
+     }
+
+     .EnAtend {
+        
+         width: 240px;
+         height: 75px;
+         padding: 6px;
+         align-items: center;
+     }
+     .Worker{
+        width: 100%;
+        height: 100%;
+     }
+     
+ .plusWorker {
+     width: 40px;
+     height: 40px;
+ }
+ h5{
+    font-size: 28px;
+ }
+     .enAtend {
+         width: 100%;
+         gap: 0.5rem;
+         height: 95%;
      }
 
      #closeBriefInfos {

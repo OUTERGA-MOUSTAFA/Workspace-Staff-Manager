@@ -57,30 +57,64 @@ function errorValidation() {
     const pararolecompany = document.querySelector('#pararolecompany')
     const parafromdate = document.querySelector('#parafromdate')
     const paratodate = document.querySelector('#paratodate')
+    let valid = true
     //---------- Company error -----------------------
     if (Company.value.trim() == '') {
-        paracompany.textContent = 'company Ne pas Valider'
-    } else paracompany.innerHTML = ''
+        paracompany.textContent = 'Company non valide';
+        valid = false;
+    } else paracompany.textContent = ''
 
     //---------- Role error -----------------------
     if (role.value.trim() == '') {
         pararolecompany.textContent = 'Role Ne pas Valider'
+        valid = false
+        return valid
     } else pararolecompany.innerHTML = ''
 
     //---------- From Date error -----------------------
-    if (formDate.value == '') {
-        parafromdate.textContent = 'from date Ne pas Valider'
-    } else parafromdate.innerHTML = ""
+
+
+
+
 
     //---------- To Date error -----------------------
-    if (toDate.value == '') {
-        paratodate.textContent = 'To date Ne pas Valider'
-    } else paratodate.innerHTML = ""
+    if (formDate.value === '') {
+        parafromdate.textContent = 'From date non valide'
+        valid = false
+    } else {
+        parafromdate.textContent = ''
+    }
+
+    //---------- To Date error -----------------------
+    if (toDate.value === '') {
+        paratodate.textContent = 'To date non valide'
+        valid = false
+        return valid
+    } else {
+        paratodate.textContent = ''
+    }
+    console.log(formDate.value, "     ", toDate.value)
+    if (formDate.value !== '' && toDate.value !== '') {
+
+        if (formDate.value > toDate.value) {
+            parafromdate.textContent = "Date De pas correct!"
+            valid = false
+            return valid
+        }else{
+            parafromdate.textContent = ""
+        }
+
+    }
+
 }
 function validCompany() {
     //---------- Company validation -----------------------
-    errorValidation()
-    if (Company.value.trim() !== "" && role.value.trim() !== "" && formDate.value !== "" && toDate.value !== "") {
+    // if (!errorValidation()) {
+    //     console.log('!errorValidation(): ', !errorValidation())
+    //     return;
+    // }
+
+    if (errorValidation() != false) {
 
         let addExp = {
             Company: Company.value,
@@ -100,27 +134,66 @@ function validCompany() {
         formDate.value = ""
         toDate.value = ""
         document.querySelector('.ExpPro').appendChild(experienceCompany)
-
     }
 
 }
 
 function errosHandling() {
-
+    let valid = true
     let paranom = document.querySelector('#paranom');
     let pararole = document.querySelector('#pararole');
     let paraemail = document.querySelector('#paraemail');
     let paratele = document.querySelector('#paratele');
 
     let selectedRole = Roles.value;
+    if (selectedRole === '') {
+        pararole.textContent = 'Role non valide'
+        valid = false
+        return valid
+    } else pararole.textContent = ""
+
     let emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-    let regexphone = /^(\+212|0)[6-7][0-9]{8}$/
+    let regexphone = /^(?:\+212|0)(6|7)[0-9]{8}$/ //\d{8}  ==> [0-9]{8}
     let nomRegex = /^[a-zA-ZÀ-ÿ\s]{5,30}$/
 
-    paranom.textContent = !nomRegex.test(nom.value.trim()) ? 'Nom non valide' : ""
-    pararole.textContent = selectedRole === "" ? 'Role non valide' : ""
-    paraemail.textContent = !emailRegex.test(email.value) ? 'Email non valide' : ""
-    paratele.textContent = !regexphone.test(telephone.value) ? 'Téléphone non valide' : ""
+
+    if (nom.value.trim() === '') {
+        paranom.textContent = 'Nom non valide'
+        valid = false
+        return valid
+    } else {
+        paranom.textContent = ''
+        if (!nomRegex.test(nom.value.trim())) {
+            paranom.textContent = 'Nom doit etre min 2 carachter'
+            valid = false
+            return valid
+        } else {
+            paranom.textContent = ""
+        }
+    }
+
+    if (email.value.trim() === '') {
+        paraemail.textContent = 'Email non valide'
+        valid = false
+        return valid
+    } else {
+        paraemail.textContent = ''
+        if (!emailRegex.test(email.value)) {
+            paraemail.textContent = 'Eamil non valid'
+            valid = false
+            return valid
+        }
+    }
+    if (telephone.value === '') {
+        paratele.textContent = "Telephone pas encour remplaire"
+        return false
+    } else {
+        paratele.textContent = ""
+        if (!regexphone.test(telephone.value)) {
+            paratele.textContent = 'Téléphone non valide'
+            return false
+        }
+    }
 }
 function urlValidation() {
 
@@ -147,7 +220,8 @@ function profiles(classWorker, img, tableworkers) {
         ` 
         <div class="EnAtend">
             <div class="photoworker">                
-                <img src="${elem.photo}" alt="profile Worker pic" class="profileWorkerPic"></div>
+                <img src="${elem.photo}" alt="profile Worker pic" class="profileWorkerPic">
+            </div>
             <div class="nomworker">
                 <p>${elem.Nom}</p>
                 <p class="roleworker">${elem.Role}</p>
@@ -157,11 +231,12 @@ function profiles(classWorker, img, tableworkers) {
             `).join('')
     classWorker.appendChild(Worker)
 }
-function profile(tableWorker){
+
+function profile(tableWorker) {
     let profille = document.querySelector('.infosWorker')
     profille.innerHTML = ""
     let Worker = document.createElement('div');
-    Worker.innerHTML = tableWorker.map((elem) =>`
+    Worker.innerHTML = tableWorker.map((elem) => `
         <div class="infosWorker-profielTitle">
             <h2>Profile</h2>
             <img src="images/close.webp" alt="close page" onclick="CloseProfile()" id="closeProfile">
@@ -187,7 +262,7 @@ closeModal.addEventListener('click', () => {
 })
 /*--------------Open Modal--------------------------*/
 addWorker.addEventListener('click', () => {
-    Modal.style.display = 'block'
+    Modal.style.display = 'flex'
 })
 /**-------- CloseProfile this function used becaus on click on icone close profile that is exist in js part */
 function CloseProfile() {
@@ -203,15 +278,13 @@ function EnAtendWorkers() {
 function formValidation() {
 
     let photoUrl = urlValidation()
-    let selectedRole = Roles.value
-    errosHandling()
-
-    if (nom.value && selectedRole !== "" && email.value && telephone.value) {
+    // console.log(errosHandling)
+    if (errosHandling() != false) {
         counteur++
         let addWorker = {
             id: counteur,
             Nom: nom.value,
-            Role: selectedRole,
+            Role: Roles.value,
             photo: photoUrl,
             Experiences: [...TableExp],
             Email: email.value,
@@ -225,11 +298,11 @@ function formValidation() {
         TableExp = []
         EnAtendWorkers()
         counterWorker.textContent = workers.length == 0 ? 0 : workers.length
-    }
+    } else errosHandling()
 }
 
 /*************************** Function add worker to Zone *****************************/
-function addworker(idWorkerSelected){
+function addworker(idWorkerSelected) {
     /*--------------Open Modal--------------------------*/
     addWorker.addEventListener('click', () => {
         Modal.style.display = 'block'
@@ -248,12 +321,12 @@ function addworker(idWorkerSelected){
     // refresh enAtende Table
     EnAtendWorkers()
     // envoyer workers of salle conference salleConference
-    
+
     let classConference = document.querySelector('.elem-1')
     img = "images/close.webp"
     let classRemove = img.className = 'btnAjouter'
     profile(salleConference)
-    profiles(classConference,img,classRemove,salleConference)
+    profiles(classConference, img, classRemove, salleConference)
 
 }
 
@@ -261,9 +334,9 @@ function addworker(idWorkerSelected){
 
 function Salle(emp) {
     let img = "images/ajouter.webp"
-    
+    let classWorker = document.querySelector('.BriefInfos')
     let classAjouter = img.className = 'btnAjouter'
-    profiles(classWorker, img,classAjouter, emp)
+    profiles(classWorker, img, emp)
 }
 
 //----***********company btn in form
@@ -301,7 +374,7 @@ document.querySelector('#SalleReception').addEventListener('click', () => {
         alert('La salle de reception est plain! merçi')
         return
     }
-     let employeur = []
+    let employeur = []
     workers.map(elem =>
         elem.Zone == 'Unassigned Staff' && (elem.Role === "Receptionest" || elem.Role === "Manager" || elem.Role === "Nettoyage") ? employeur.push(elem) : 0
     )
