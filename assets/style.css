@@ -8,22 +8,29 @@
  body {
      width: 100%;
      height: 100%;
+     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
  }
 
  footer {
      color: #FFFFFF;
      background: #303135;
-     min-width: 100%;
-     padding: 12px;
+     width: 100%;
+     padding: 15px;
+     min-height: 100px;
+     max-height: 200px;
      display: flex;
      flex-wrap: wrap;
      justify-content: center;
      align-items: center;
  }
+ .ftr{
+    text-align: center;
+    padding: 12px;
+ }
 a{
     background:#858484;
-    padding: 5px 10px;
-    margin: auto;
+    padding: 8px 15px;
+    margin: 2px 12px;
     border-radius: 10px;
     text-decoration: none;
     color: #FFFFFF;
@@ -35,13 +42,11 @@ a:focus {
  .paraErrore {
      color: #e74c3c;
      font-size: 14px;
-     font-family: Arial, Helvetica, sans-serif;
      padding: 3px;
      text-transform: lowercase;
  }
-
  .enAtend,
- .Worker,
+ #elem1,
  .BriefInfos {
      width: 100%;
      height: 80%;
@@ -53,19 +58,22 @@ a:focus {
  }
 
  .enAtend::-webkit-scrollbar,
- .Worker::-webkit-scrollbar,
+ #elem1::-webkit-scrollbar,
+ form::-webkit-scrollbar,
  .BriefInfos::-webkit-scrollbar {
      width: 6px;
  }
 
  .enAtend::-webkit-scrollbar-thumb,
- .Worker::-webkit-scrollbar-thumb,
+ #elem1::-webkit-scrollbar-thumb,
+ form::-webkit-scrollbar-thumb,
  .BriefInfos::-webkit-scrollbar-thumb {
      background: #888;
      border-radius: 4px;
  }
 
  .enAtend::-webkit-scrollbar-thumb:hover,
+ form::-webkit-scrollbar-thumb:hover,
  .BriefInfos::-webkit-scrollbar-thumb:hover {
      background: #888;
  }
@@ -148,9 +156,10 @@ a:focus {
      position: absolute;
      top: 0;
      left: 0;
+     z-index: 2;
      width: 100%;
      height: 100%;
-     background: #01491ba3;
+     background: #171717be;
      display: none;
      align-content: center;
  }
@@ -185,14 +194,14 @@ a:focus {
      max-width: 767px;
      height: 90%;
      margin: 2px auto;
-     background: #2c1b00e6;
+     background: #1e140ebd;
      display: flex;
      flex-direction: row;
      justify-content: center;
      align-items: flex-end;
      padding: 6px;
      border-radius: 10px;
-     box-shadow: #888 2px -2px 20px;
+     box-shadow: #7c7c7c 2px -2px 20px;
  }
 
 
@@ -242,21 +251,30 @@ a:focus {
      font-weight: bold;
  }
 
- .elements {
-     background: #a308085c;
-     font-size: 14px;
-     border-radius: 20px;
-     padding: 10px 2px;
-     display: flex;
-     flex-direction: column;
-     align-items: center;
- }
-
  .elem-1 {
      grid-column: 1/5;
      grid-row: 1/5;
  }
-
+  .elements {
+     background: #a3410848;
+     font-size: 15px;
+     border-radius: 20px;
+     padding:2px;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+ }
+.element-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+}
+ #elem1{
+    width: 100%;
+    height: 100%;
+ }
  .elem-2 {
      grid-column: 1/5;
      grid-row: 5/13;
@@ -318,11 +336,13 @@ a:focus {
      position: relative;
      top: 0;
      width: 90%;
-     background: #eae8e8e2;
+     height: 100%;
+     background: #eae8e89f;
      border-radius: 20px;
      padding: 40px 15px;
      margin: 5px auto;
      color: #192316;
+     box-shadow: 3px -3px 15px #201f1f;
  }
 
  .textcenter {
@@ -359,8 +379,7 @@ a:focus {
      font-size: 16px;
  }
  .inputs>label {
-     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-     font-size: 14px;
+    font-size: 14px;
  }
 
 
@@ -417,7 +436,6 @@ a:focus {
      width: fit-content;
      margin: 0.4rem;
      font-size: 14px;
-     font-family: Arial, Helvetica, sans-serif;
      text-transform: capitalize;
  }
 
@@ -457,7 +475,7 @@ a:focus {
      font-size: 14px;
      border-radius: 15px;
      transition: all ease-in-out .3s;
-     background: #df2100b3;
+     background: #144079a2;
  }
 
  .EnAtend:hover {
@@ -490,15 +508,12 @@ a:focus {
  }
 
  .nomworker {
-     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-
      display: flex;
      flex-direction: column;
      justify-content: space-between;
  }
 
  .roleworker {
-     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
      color: #a89d00;
      font-weight: 300;
  }

@@ -30,6 +30,14 @@ const infosWorker = document.querySelector('.infosWorker')
 document.querySelector('#closeBriefInfos').addEventListener('click', () => {
     modalProfile.style.display = 'none'
 })
+/*---------------close Modal------------------------*/
+closeModal.addEventListener('click', () => {
+    Modal.style.display = 'none'
+})
+/*--------------Open Modal--------------------------*/
+addWorker.addEventListener('click', () => {
+    Modal.style.display = 'flex'
+})
 
 /*---------------Remlire list roles workers---------*/
 roles.forEach(elem => {
@@ -210,12 +218,12 @@ function urlValidation() {
     }
 }
 
-function profiles(classWorker, img, tableworkers) {
+function profiles(classWorkers, img, tableworkers) {
 
-    classWorker.innerHTML = ""
     let Worker = document.createElement('div');
     console.log("Worker table profile: ", tableworkers)
     Worker.className = "Worker"
+    classWorkers.innerHTML = ""
     Worker.innerHTML = tableworkers.map((elem) =>
         ` 
         <div class="EnAtend">
@@ -229,8 +237,53 @@ function profiles(classWorker, img, tableworkers) {
             <img src="${img}" alt="out worker" class="btnEdit" onclick="addworker(${elem.id})">
         </div>
             `).join('')
-    classWorker.appendChild(Worker)
+    classWorkers.appendChild(Worker)
 }
+
+
+// function profiles(classWorkers, img, tableworkers) {
+
+//     let Worker = document.createElement('div');
+//     console.log("Worker table profile: ", tableworkers)
+//     Worker.className = "Worker"
+//     classWorkers.innerHTML = ""
+//     Worker.innerHTML = tableworkers.map((elem) =>
+//         ` 
+//         <div class="EnAtend">
+//             <div class="photoworker">                
+//                 <img src="${elem.photo}" alt="profile Worker pic" class="profileWorkerPic">
+//             </div>
+//             <div class="nomworker">
+//                 <p>${elem.Nom}</p>
+//                 <p class="roleworker">${elem.Role}</p>
+//             </div>
+//             <img src="${img}" alt="out worker" class="${btnUAD}" data-id="${elem.id}">
+//         </div>
+//             `).join('')
+//     classWorkers.appendChild(Worker)
+// }
+
+// function EditAjouterDelete(id){
+//     //let Worker = document.querySelector('.Worker')
+//     let btnAdd = document.querySelector('.btn')
+//     btnAdd.forEach(btn => {
+//         btn.addEventListener('click', () => {
+
+//             let id = parseInt(btn.dataset.id)
+
+//             addworker(id, tableworkers, targetTable)
+//         })
+//     })
+// }
+
+
+
+function EnAtendWorkers(employer) {
+    let enAtend = document.querySelector('.enAtend')
+    let img = "images/edit.webp"
+    profiles(enAtend, img, employer)
+}
+
 
 function profile(tableWorker) {
     let profille = document.querySelector('.infosWorker')
@@ -256,24 +309,13 @@ function profile(tableWorker) {
     `).join('')
     profille.appendChild(Worker)
 }
-/*---------------close Modal------------------------*/
-closeModal.addEventListener('click', () => {
-    Modal.style.display = 'none'
-})
-/*--------------Open Modal--------------------------*/
-addWorker.addEventListener('click', () => {
-    Modal.style.display = 'flex'
-})
+
 /**-------- CloseProfile this function used becaus on click on icone close profile that is exist in js part */
 function CloseProfile() {
     infosWorker.style.display = 'none'
     modalProfile.style.display = 'none'
 }
-function EnAtendWorkers() {
-    let enAtend = document.querySelector('.enAtend')
-    let img = "images/edit.webp"
-    profiles(enAtend, img, workers)
-}
+
 
 function formValidation() {
 
@@ -296,12 +338,46 @@ function formValidation() {
         console.log(workers)
         document.querySelector("form").reset();
         TableExp = []
-        EnAtendWorkers()
-        counterWorker.textContent = workers.length == 0 ? 0 : workers.length
+        EnAtendWorkers(workers)
+        counterWorker.textContent = workers.length
     } else errosHandling()
 }
 
+
+
+//----***********company btn in form--------------
+addExp.addEventListener('click', (event) => {
+    event.preventDefault()
+    validCompany()
+})
+
+//----***********add worker btn-------------------
+saveWorker.addEventListener('click', (e) => {
+    e.preventDefault()
+    formValidation()
+})
+
+
+
+
+/******** Salle function get worker table filtred and full *************************************************** */
+
+function Salle(emp) {
+    let img = "images/ajouter.webp"
+    //let classAjouter = img.className = 'btnAjouter'
+    profiles(classWorker, img, emp)
+}
+//-----------------------------------------------------------
+
+
 /*************************** Function add worker to Zone *****************************/
+
+let laSalle1 = document.querySelector('.elem-1')
+let laSalle2 = document.querySelector('.elem-2')
+let laSalle3 = document.querySelector('.elem-3')
+let laSalle4 = document.querySelector('.elem-4')
+let laSalle5 = document.querySelector('.elem-5')
+let laSalle6 = document.querySelector('.elem-6')
 function addworker(idWorkerSelected) {
     /*--------------Open Modal--------------------------*/
     addWorker.addEventListener('click', () => {
@@ -313,43 +389,26 @@ function addworker(idWorkerSelected) {
         if (workers[i].id === idWorkerSelected) {
             salleConference.push(workers[i])
             workers.splice(i, 1)
-            return
+            break;
         }
 
     }
-
-    // refresh enAtende Table
-    EnAtendWorkers()
+    Salle(workers)
+    counterWorker.textContent = workers.length
     // envoyer workers of salle conference salleConference
-
-    let classConference = document.querySelector('.elem-1')
+    let classConference = document.querySelector('#elem1')
+    EnAtendWorkers(workers)
+    if(salleConference.length>=1){
+        laSalle1.style.background = '#25e004a4'
+    } 
     img = "images/close.webp"
-    let classRemove = img.className = 'btnAjouter'
-    profile(salleConference)
-    profiles(classConference, img, classRemove, salleConference)
+    //let classRemove = img.className = 'btnAjouter'
+    // profile(salleConference)
+    profiles(classConference, img,salleConference)
 
 }
 
-/******** Salle function get worker table filtred and full *************************************************** */
 
-function Salle(emp) {
-    let img = "images/ajouter.webp"
-    let classWorker = document.querySelector('.BriefInfos')
-    let classAjouter = img.className = 'btnAjouter'
-    profiles(classWorker, img, emp)
-}
-
-//----***********company btn in form
-addExp.addEventListener('click', (event) => {
-    event.preventDefault()
-    validCompany()
-})
-
-//----***********add worker btn
-saveWorker.addEventListener('click', (e) => {
-    e.preventDefault()
-    formValidation()
-})
 
 
 // ['Nettoyage', 'Sécurité', 'Receptionest', 'Serveur', 'Manager', 'Autre rôles']
@@ -420,7 +479,7 @@ document.querySelector('#SallePersonnel').addEventListener('click', () => {
     }
     let employeur = []
     workers.map(elem =>
-        elem.Zone == 'Unassigned Staff' ? employeur.push(elem) : 0
+       elem.Zone == 'Unassigned Staff' ? employeur.push(elem) : 0
     )
     modalProfile.style.display = 'block'
     Salle(employeur)
