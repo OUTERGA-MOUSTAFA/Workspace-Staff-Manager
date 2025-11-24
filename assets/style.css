@@ -11,8 +11,8 @@
  }
 
  footer {
-     color: azure;
-     background: #01071d;
+     color: #FFFFFF;
+     background: #303135;
      min-width: 100%;
      padding: 12px;
      display: flex;
@@ -20,7 +20,18 @@
      justify-content: center;
      align-items: center;
  }
-
+a{
+    background:#858484;
+    padding: 5px 10px;
+    margin: auto;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #FFFFFF;
+}
+a:focus {
+  outline: 3px solid #005fcc;
+  outline-offset: 2px;
+}
  .paraErrore {
      color: #e74c3c;
      font-size: 14px;
@@ -56,12 +67,12 @@
 
  .enAtend::-webkit-scrollbar-thumb:hover,
  .BriefInfos::-webkit-scrollbar-thumb:hover {
-     background: #555;
+     background: #888;
  }
 
  .container {
-     color: azure;
-     background: #343333;
+     color: #FFFFFF;
+     background: #888;
      min-width: 100%;
      height: 100%;
      padding: 12px;
@@ -99,7 +110,7 @@
  }
 
  button {
-     color: azure;
+     color: #FFFFFF;
      cursor: pointer;
      padding: 8px 14px;
      width: 150px;
@@ -278,8 +289,8 @@
      top: 0;
      left: 0;
      z-index: 2;
-     background: #d8d6d280;
-     backdrop-filter: blur(5px);
+     background: #8888883f;
+     backdrop-filter: blur(3px);
      padding: 1rem 0;
      width: 100%;
      /*display: none;*/
@@ -311,7 +322,7 @@
      border-radius: 20px;
      padding: 40px 15px;
      margin: 5px auto;
-     color: #40c403;
+     color: #192316;
  }
 
  .textcenter {
@@ -340,40 +351,35 @@
      max-height: 80px;
      border-radius: 50%;
  }
-
- .inputs>label {
-     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-     position: absolute;
-     top: -8px;
-     left: 0px;
-     font-size: 16px;
- }
-
  .inputs {
-     position: relative;
      margin-bottom: 25px;
      border: 0;
      background: transparent;
      width: 90%;
-     padding: 8px 0 5px 0;
      font-size: 16px;
  }
+ .inputs>label {
+     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+     font-size: 14px;
+ }
+
+
 
  input,
  select {
-     width: 90%;
+     width: 80%;
      padding: 8px 12px;
      border-radius: 10px;
      font-size: 16px;
      outline: none;
      border: #90ee02 1px solid;
-     margin-top: 2px;
+     margin: 2px auto;
  }
 
  .experiences {
      display: flex;
      flex-direction: column;
-     background: #1b92f40f;
+     background: #888;
      padding: 20px;
      border: 1px solid #0295d4;
      justify-content: left;
@@ -417,7 +423,7 @@
 
  .saveWorker,
  .Cancel {
-     color: whitesmoke;
+     color: #FFFFFF;
      background-color: #e74c3c;
      border: 0;
      padding: 10px 20px;
@@ -443,7 +449,7 @@
      display: flex;
      flex-direction: row;
      justify-content: space-evenly;
-     align-items: ;
+     align-items: center;
      width: 250px;
      height: 70px;
      padding: 5px;
@@ -606,7 +612,6 @@
      }
 
      .closeModel {
-         width: 40px;
          left: 92%;
      }
 

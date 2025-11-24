@@ -4,8 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="L’entreprise WorkSphere souhaite disposer d’une application web innovante dédiée à la gestion visuelle et interactive du personnel au sein de ses espaces de travail.">
-    <meta name="keywords" content="ordinateur, tablette, smartphone,Add New Worker,Unassigned Staff,Unassigned,Workspace Staff Manager">
+    <meta name="description"
+        content="L’entreprise WorkSphere souhaite disposer d’une application web innovante dédiée à la gestion visuelle et interactive du personnel au sein de ses espaces de travail.">
+    <meta name="keywords"
+        content="ordinateur, tablette, smartphone,Add New Worker,Unassigned Staff,Unassigned,Workspace Staff Manager">
     <title>WorkSpare</title>
     <link rel="stylesheet" href="/assets/style.css">
 </head>
@@ -24,41 +26,49 @@
         <div class="items item-2">
             <div class="elements elem-1">
                 <h5>Salle conférence</h5>
-                <img src="images/plus.webp"type="image/webp" alt="add worker" class="plusWorker" id="SalleConference">
+                <img src="images/plus.webp" fetchpriority="high" loading="lazy" type="image/webp" alt="add worker"
+                    class="plusWorker" id="SalleConference">
                 <div class="model">
-                    <img src="images/close.webp"type="image/webp" alt="close-model" id="closeBriefInfos">
+                    <img src="images/close.webp" fetchpriority="high" loading="lazy" type="image/webp" alt="close-model"
+                        id="closeBriefInfos">
                     <div class="BriefInfos">
-                                                
+
                     </div>
                 </div>
             </div>
             <div class="elements elem-2">
                 <h5>Réception</h5>
-                <img src="images/plus.webp"type="image/webp" alt="add worker" class="plusWorker" id="SalleReception">
+                <img src="images/plus.webp" fetchpriority="high" loading="lazy" type="image/webp" alt="add worker"
+                    class="plusWorker" id="SalleReception">
             </div>
             <div class="elements elem-3">
                 <h5>Salle des serveurs</h5>
-                <img src="images/plus.webp"type="image/webp" alt="add worker" class="plusWorker" id="SalleServer">
+                <img src="images/plus.webp" fetchpriority="high" loading="lazy" type="image/webp" alt="add worker"
+                    class="plusWorker" id="SalleServer">
             </div>
             <div class="elements elem-5">
                 <h5>Salle de sécurité</h5>
-                <img src="images/plus.webp"type="image/webp" alt="add worker" class="plusWorker" id="SalleSecurie">
+                <img src="images/plus.webp" fetchpriority="high" loading="lazy" type="image/webp" alt="add worker"
+                    class="plusWorker" id="SalleSecurie">
             </div>
             <div class="elements elem-6">
                 <h5>Salle du personnel</h5>
-                <img src="images/plus.webp"type="image/webp" alt="add worker" class="plusWorker" id="SallePersonnel">
+                <img src="images/plus.webp" fetchpriority="high" loading="lazy" type="image/webp" alt="add worker"
+                    class="plusWorker" id="SallePersonnel">
             </div>
             <div class="elements elem-4">
                 <h5>Salle archive</h5>
-                <img src="images/plus.webp"type="image/webp" alt="add worker" class="plusWorker" id="SalleArchive">
+                <img src="images/plus.webp" fetchpriority="high" loading="lazy" type="image/webp" alt="add worker"
+                    class="plusWorker" id="SalleArchive">
             </div>
-    </div>
+        </div>
     </header>
     <nav class="infosWorker">
-                        
+
     </nav>
     <main class="Register">
-        <img src="images/close.webp"type="image/webp" alt="close Model" class="closeModel">
+        <img src="images/close.webp" fetchpriority="high" loading="lazy" type="image/webp" alt="close Model"
+            class="closeModel">
         <form id="addworkers" class="text-center">
             <span class="textcenter">Ajouter un Employé(e)</span>
             <div class="inputs">
@@ -77,27 +87,30 @@
             <div class="inputs">
                 <label for="photo">Photo</label>
                 <input type="url" id="photo" placeholder="https://example.com/photo.jpg">
-                <img id="defaultphoto" alt="default picture" src="images/profile.webp" type="image/webp" min-width="100">
+                <img id="defaultphoto" alt="default picture" src="images/profile.webp" fetchpriority="high"
+                    loading="lazy" type="image/webp" min-width="100">
             </div>
             <div class="inputs">
-                <label id="experiencesLabel" for="Company">Expériences professionnelles :</label>
-                <div class="experiences">
-                    <label for="Company">Company</label>
-                    <input type="text" aria-describedby="paracompany" id="Company">
-                    <p id="paracompany" class="paraErrore"></p>
-                    <label for="role">Role</label>
-                    <input type="text" aria-describedby="pararole" id="role">
-                    <p id="pararolecompany" class="paraErrore"></p>
-                    <label for="fromDate">De</label>
-                    <input type="date" aria-describedby="parafromdate" id="fromDate">
-                    <p id="parafromdate" class="paraErrore"></p>
-                    <label for="todate">À</label>
-                    <input type="date" aria-describedby="paratodate" id="toDate">
-                    <p id="paratodate" class="paraErrore"></p>
-                    <label class="ExpPro" aria-live="polite">
+                <div>
+                    <label id="experiencesLabel" for="Company">Expériences professionnelles :</label>
+                    <div class="experiences">
+                        <label for="Company">Company</label>
+                        <input type="text" aria-describedby="paracompany" id="Company">
+                        <p id="paracompany" class="paraErrore"></p>
+                        <label for="role">Role</label>
+                        <input type="text" aria-describedby="pararole" id="role">
+                        <p id="pararolecompany" class="paraErrore"></p>
+                        <label for="fromDate">De</label>
+                        <input type="date" aria-describedby="parafromdate" id="fromDate">
+                        <p id="parafromdate" class="paraErrore"></p>
+                        <label for="todate">À</label>
+                        <input type="date" aria-describedby="paratodate" id="toDate">
+                        <p id="paratodate" class="paraErrore"></p>
+                        <label class="ExpPro" aria-live="polite">
 
-                    </label>
-                    <button id="addExp">Add Experience</button>
+                        </label>
+                        <button id="addExp">Add Experience</button>
+                    </div>
                 </div>
             </div>
             <div class="inputs">
@@ -119,8 +132,9 @@
     <footer class="footer">
         <p>© 2025 MOUSTAFA OUTERGA. Tous droits réservés.</p>
         <p>Fait avec ❤️ et Youdev</p>
-        <a href="https://www.linkedin.com/in/moustafa-outerga-ba6384224/" target="_blank" rel="link to linkedin"></a>
-        <a href="https://outerga-moustafa.github.io/Portfolio/" target="_blank" rel="link to github page"></a>
+        <a href="https://www.linkedin.com/in/moustafa-outerga-ba6384224/" target="_blank"
+            rel="link to linkedin">LinkedIn</a>
+        <a href="https://outerga-moustafa.github.io/Portfolio/" target="_blank" rel="link to github page">GitHub</a>
     </footer>
     <script src="assets/script.js" defer></script>
 
