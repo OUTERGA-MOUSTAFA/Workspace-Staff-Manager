@@ -1,6 +1,3 @@
-// document.querySelector(".Cancel").onclick = () => {
-//     document.querySelector(".Register").style.display = "none";
-// };
 const roles = ['Nettoyage', 'Sécurité', 'Receptionest', 'Serveur', 'Manager', 'Autre rôles']
 const nom = document.getElementById('Nom')
 const Roles = document.getElementById('Role')
@@ -241,10 +238,18 @@ function profiles(classWorkers, img, tableworkers, btnClass) {
         btn.addEventListener('click', () => {
 
             let id = parseInt(btn.dataset.id)
-            addworker(id)
+            addWorker(id)
         })
     })
 
+
+    document.querySelectorAll('.btnRemove').forEach(btn => {
+        btn.addEventListener('click', () => {
+
+            let id = parseInt(btn.dataset.id)
+            removeWorker(id)
+        })
+    })
 
 }
 
@@ -466,7 +471,7 @@ let laSalle6 = document.querySelector('#elem6')
 /********************************* Function add worker to Zone ******************************** */
 
 
-function addworker(idWorkerSelected) {
+function addWorker(idWorkerSelected) {
 
     //let index = workers.findIndex(w => w.id === idWorkerSelected); easy way 
     console.log('idWorker:', idWorkerSelected)
@@ -490,7 +495,7 @@ function addworker(idWorkerSelected) {
 
         EnAtendWorkers(workers)
         let placeColor = document.querySelector('.elem-1')
-        salleConference.length >= 1 ? placeColor.style.background = '#25e004a4' : placeColor.style.background = '#a3410848'
+        salleConference.length >= 1 ? placeColor.style.background = '#25e004a4':0
         img = "images/close.webp"
         let btnClassRemove = 'btnRemove'
         profile(salleConference)
@@ -520,7 +525,7 @@ function addworker(idWorkerSelected) {
 
         EnAtendWorkers(workers)
         let placeColor = document.querySelector('.elem-2')
-        salleReception.length >= 1 ? placeColor.style.background = '#25e004a4' : placeColor.style.background = '#a3410848'
+        salleReception.length >= 1 ? placeColor.style.background = '#25e004a4' :0
         img = "images/close.webp"
         let btnClassRemove = 'btnRemove'
         profile(salleReception)
@@ -549,7 +554,7 @@ function addworker(idWorkerSelected) {
 
         EnAtendWorkers(workers)
         let placeColor = document.querySelector('.elem-3')
-        salleServeurs.length >= 1 ? placeColor.style.background = '#25e004a4' : placeColor.style.background = '#a3410848'
+        salleServeurs.length >= 1 ? placeColor.style.background = '#25e004a4' : 0
         img = "images/close.webp"
         let btnClassRemove = 'btnRemove'
         profile(salleServeurs)
@@ -578,7 +583,7 @@ function addworker(idWorkerSelected) {
 
         EnAtendWorkers(workers)
         let placeColor = document.querySelector('.elem-5')
-        salleSecurite.length >= 1 ? placeColor.style.background = '#25e004a4' : placeColor.style.background = '#a3410848'
+        salleSecurite.length >= 1 ? placeColor.style.background = '#25e004a4' :0
         img = "images/close.webp"
         let btnClassRemove = 'btnRemove'
         profile(salleSecurite)
@@ -607,7 +612,7 @@ function addworker(idWorkerSelected) {
 
         EnAtendWorkers(workers)
         let placeColor = document.querySelector('.elem-6')
-        sallePersonnel.length >= 1 ? placeColor.style.background = '#25e004a4' : placeColor.style.background = '#a3410848'
+        sallePersonnel.length >= 1 ? placeColor.style.background = '#25e004a4' : 0
         img = "images/close.webp"
         let btnClassRemove = 'btnRemove'
         profile(sallePersonnel)
@@ -636,7 +641,7 @@ function addworker(idWorkerSelected) {
 
         EnAtendWorkers(workers)
         let placeColor = document.querySelector('.elem-4')
-        salleArchives.length >= 1 ? placeColor.style.background = '#25e004a4' : placeColor.style.background = '#a3410848'
+        salleArchives.length >= 1 ? placeColor.style.background = '#25e004a4' :0
         img = "images/close.webp"
         let btnClassRemove = 'btnRemove'
         profile(salleArchives)
@@ -646,4 +651,33 @@ function addworker(idWorkerSelected) {
         /****************************************** */
 
     }
+}
+
+
+/********************************* Function remove worker from Zone to En attende ******************************** */
+
+
+function addRemove(idWorkerSelected) {
+
+        for (let i = 0; i < workers.length; i++) {
+            if (workers[i].id === idWorkerSelected) {
+                workers[i].Zone = 'Unassigned Staff'
+                salleConference.push(workers[i])
+                workers.splice(i, 1)
+                break
+            }
+        }
+        Salle(workers, classWorker)
+        counterWorker.textContent = workers.length
+        // envoyer workers of salle conference salleConference
+
+        EnAtendWorkers(workers)
+        let placeColor = document.querySelector('.elem-1')
+        salleConference.length >= 1 ? placeColor.style.background = '#25e004a4' :0
+        img = "images/close.webp"
+        let btnClassRemove = 'btnRemove'
+        profile(salleConference)
+        profiles(laSalle1, img, salleConference, btnClassRemove)
+        infosWorker.style.display ='block'
+        /****************************************** */
 }
