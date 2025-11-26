@@ -266,6 +266,7 @@ function profile(tableWorker) {
     let profille = document.querySelector('.infosWorker')
     profille.innerHTML = ""
     let Worker = document.createElement('div');
+    Worker.className = 'infosWorker-plat'
     Worker.innerHTML = tableWorker.map((elem) => `
         <div class="infosWorker-profielTitle">
             <h2>Profile</h2>
@@ -280,7 +281,7 @@ function profile(tableWorker) {
         </div>
         <div class="contactWorker">
             <p><span class="contactWorker-conact">email: </span>${elem.Email}</p>
-            <p><span class="contactWorker-conact">phone: </span>${elem.telephone}</p>
+            <p><span class="contactWorker-conact">phone: </span>${elem.Telephone}</p>
             <p><span class="contactWorker-conact">Location: </span>${elem.Zone}</p>
         </div>
     `).join('')
@@ -345,7 +346,55 @@ function Salle(emp) {
     profiles(classWorker, img, emp, btnClassAjouter)
 }
 //-----------------------------------------------------------
+function filtreZoneConference(newWorkers) {
+    let employeur = []
+    newWorkers.map(elem =>
+        elem.Zone == 'Unassigned Staff' ? employeur.push(elem) : 0
+    )
+    EnAtendWorkers(newWorkers)
 
+    Salle(employeur, classWorker)
+}
+function filtreZoneReception(newWorkers) {
+    let employeur = []
+    newWorkers.map(elem =>
+        elem.Zone == 'Unassigned Staff' && (elem.Role === "Receptionest" || elem.Role === "Manager" || elem.Role === "Nettoyage") ? employeur.push(elem) : 0
+    )
+    modalProfile.style.display = 'block'
+    Salle(employeur,classWorker)
+    EnAtendWorkers(newWorkers)
+}
+
+function filtreZoneServeur(newWorkers){
+    let employeur = []
+    newWorkers.map(elem =>
+       elem.Zone == 'Unassigned Staff' && (elem.Role === "Serveur" || elem.Role === "Manager" || elem.Role === "Nettoyage") ? employeur.push(elem) : 0
+    )
+    modalProfile.style.display = 'block'
+    Salle(employeur,classWorker)
+    EnAtendWorkers(newWorkers)
+
+}
+function filtreZoneSecurity(newWorkers){
+    let employeur = []
+    newWorkers.map(elem =>
+       elem.Zone == 'Unassigned Staff' && (elem.Role === "Sécurité" || elem.Role === "Manager" || elem.Role === "Nettoyage") ? employeur.push(elem) : 0
+    )
+    modalProfile.style.display = 'block'
+    Salle(employeur,classWorker)
+    EnAtendWorkers(newWorkers)
+
+}
+function filtreZoneArchive(newWorkers){
+    let employeur = []
+    newWorkers.map(elem =>
+       elem.Zone == 'Unassigned Staff' && (elem.Role != "Nettoyage") ? employeur.push(elem) : 0
+    )
+    modalProfile.style.display = 'block'
+    Salle(employeur,classWorker)
+    EnAtendWorkers(newWorkers)
+
+}
 let salleChecked = ""
 // ['Nettoyage', 'Sécurité', 'Receptionest', 'Serveur', 'Manager', 'Autre rôles']
 document.querySelector('#Conference').addEventListener('click', () => {
@@ -356,15 +405,10 @@ document.querySelector('#Conference').addEventListener('click', () => {
     classWorker.style.display = 'block'
 
     if (maxSalleConference == salleConference.length) {
-        alert('La salle de conférence est plain! merçi')
+        alert('Pardent La salle Conférence est plain! merçi')
         return
     }
-    let employeur = []
-    workers.map(elem =>
-        elem.Zone == 'Unassigned Staff' ? employeur.push(elem) : 0
-    )
-    modalProfile.style.display = 'block'
-    Salle(employeur)
+    filtreZoneConference(workers)
 })
 document.querySelector('#Reception').addEventListener('click', () => {
     let maxSalleResption = 3
@@ -374,15 +418,10 @@ document.querySelector('#Reception').addEventListener('click', () => {
     classWorker.style.display = 'block'
 
     if (maxSalleResption == salleReception.length) {
-        alert('La salle de reception est plain! merçi')
+        alert('Pardent La salle Reception est plain! merçi')
         return
     }
-    let employeur = []
-    workers.map(elem =>
-        elem.Zone == 'Unassigned Staff' && (elem.Role === "Receptionest" || elem.Role === "Manager" || elem.Role === "Nettoyage") ? employeur.push(elem) : 0
-    )
-    modalProfile.style.display = 'block'
-    Salle(employeur)
+    filtreZoneReception(workers)
 })
 document.querySelector('#Server').addEventListener('click', () => {
     let maxSalleDev = 2
@@ -394,12 +433,7 @@ document.querySelector('#Server').addEventListener('click', () => {
         alert('La salle de reception est plain! merçi')
         return
     }
-    let employeur = []
-    workers.map(elem =>
-        elem.Zone == 'Unassigned Staff' && (elem.Role === "Serveur" || elem.Role === "Manager" || elem.Role === "Nettoyage") ? employeur.push(elem) : 0
-    )
-    modalProfile.style.display = 'block'
-    Salle(employeur)
+    filtreZoneServeur(workers)
 })
 
 
@@ -413,12 +447,7 @@ document.querySelector('#Securie').addEventListener('click', () => {
         alert('La salle de sécurité est plain! merçi')
         return
     }
-    let employeur = []
-    workers.map(elem =>
-        elem.Zone == 'Unassigned Staff' && (elem.Role === "Sécurité" || elem.Role === "Manager" || elem.Role === "Nettoyage") ? employeur.push(elem) : 0
-    )
-    modalProfile.style.display = 'block'
-    Salle(employeur)
+    filtreZoneSecurity(workers)
 })
 document.querySelector('#Personnel').addEventListener('click', () => {
     let maxSallePersonnel = 2
@@ -430,12 +459,7 @@ document.querySelector('#Personnel').addEventListener('click', () => {
         alert('La salle de personnel est plain! merçi')
         return
     }
-    let employeur = []
-    workers.map(elem =>
-        elem.Zone == 'Unassigned Staff' ? employeur.push(elem) : 0
-    )
-    modalProfile.style.display = 'block'
-    Salle(employeur)
+    filtreZoneConference(workers)
 })
 
 
@@ -444,20 +468,12 @@ document.querySelector('#Archive').addEventListener('click', () => {
     salleChecked = "SalleArchive"
     /*--------------Open Modal--------------------------*/
     classWorker.style.display = 'black'
-
-
     if (maxSalleArchive == salleArchives.length) {
         alert('La salle de personnel est plain! merçi')
         return
     }
-    let employeur = []
-    workers.map(elem =>
-        elem.Zone == 'Unassigned Staff' && elem.Role != "Nettoyage" ? employeur.push(elem) : 0
-    )
-    modalProfile.style.display = 'block'
-    Salle(employeur)
+    filtreZoneArchive(workers)
 })
-
 
 
 /*************************** name place Zone workers *****************************/
@@ -469,13 +485,10 @@ let laSalle5 = document.querySelector('#elem5')
 let laSalle6 = document.querySelector('#elem6')
 
 /********************************* Function add worker to Zone ******************************** */
-
-
 function addWorker(idWorkerSelected) {
 
     //let index = workers.findIndex(w => w.id === idWorkerSelected); easy way 
     console.log('idWorker:', idWorkerSelected)
-    console.log('salleSelected: ', salleChecked)
     if (salleChecked == 'SalleConference') {
 
 
@@ -489,18 +502,16 @@ function addWorker(idWorkerSelected) {
                 break
             }
         }
-        Salle(workers, classWorker)
+        filtreZoneConference(workers)
         counterWorker.textContent = workers.length
         // envoyer workers of salle conference salleConference
-
-        EnAtendWorkers(workers)
         let placeColor = document.querySelector('.elem-1')
-        salleConference.length >= 1 ? placeColor.style.background = '#25e004a4':0
+        salleConference.length >= 1 ? placeColor.style.background = '#25e004a4' : 0
         img = "images/close.webp"
         let btnClassRemove = 'btnRemove'
         profile(salleConference)
         profiles(laSalle1, img, salleConference, btnClassRemove)
-        infosWorker.style.display ='block'
+        infosWorker.style.display = 'block'
 
         /****************************************** */
 
@@ -519,23 +530,21 @@ function addWorker(idWorkerSelected) {
                 break
             }
         }
-        Salle(workers, classWorker)
+        filtreZoneReception(workers)
         counterWorker.textContent = workers.length
         // envoyer workers of salle conference salleReception
-
-        EnAtendWorkers(workers)
         let placeColor = document.querySelector('.elem-2')
-        salleReception.length >= 1 ? placeColor.style.background = '#25e004a4' :0
+        salleReception.length >= 1 ? placeColor.style.background = '#25e004a4' : 0
         img = "images/close.webp"
         let btnClassRemove = 'btnRemove'
         profile(salleReception)
         profiles(laSalle2, img, salleReception, btnClassRemove)
-        infosWorker.style.display ='block'
+        infosWorker.style.display = 'block'
 
         /****************************************** */
 
     }
-     if (salleChecked == 'SalleServer') {
+    if (salleChecked == 'SalleServer') {
 
 
         //let index = workers.findIndex(w => w.id === idWorkerSelected); easy way 
@@ -548,23 +557,21 @@ function addWorker(idWorkerSelected) {
                 break
             }
         }
-        Salle(workers, classWorker)
+        filtreZoneServeur(workers)
         counterWorker.textContent = workers.length
         // envoyer workers of salle conference salleServeurs
-
-        EnAtendWorkers(workers)
         let placeColor = document.querySelector('.elem-3')
         salleServeurs.length >= 1 ? placeColor.style.background = '#25e004a4' : 0
         img = "images/close.webp"
         let btnClassRemove = 'btnRemove'
         profile(salleServeurs)
         profiles(laSalle3, img, salleServeurs, btnClassRemove)
-        infosWorker.style.display ='block'
+        infosWorker.style.display = 'block'
 
         /****************************************** */
 
     }
-     if (salleChecked == 'SalleSecurie') {
+    if (salleChecked == 'SalleSecurie') {
 
 
         //let index = workers.findIndex(w => w.id === idWorkerSelected); easy way 
@@ -577,23 +584,21 @@ function addWorker(idWorkerSelected) {
                 break
             }
         }
-        Salle(workers, classWorker)
+        filtreZoneSecurity(workers)
         counterWorker.textContent = workers.length
         // envoyer workers of salle conference salleSecurite
-
-        EnAtendWorkers(workers)
         let placeColor = document.querySelector('.elem-5')
-        salleSecurite.length >= 1 ? placeColor.style.background = '#25e004a4' :0
+        salleSecurite.length >= 1 ? placeColor.style.background = '#25e004a4' : 0
         img = "images/close.webp"
         let btnClassRemove = 'btnRemove'
         profile(salleSecurite)
         profiles(laSalle4, img, salleSecurite, btnClassRemove)
-        infosWorker.style.display ='block'
+        infosWorker.style.display = 'block'
 
         /****************************************** */
 
     }
-     if (salleChecked == 'SallePersonnel') {
+    if (salleChecked == 'SallePersonnel') {
 
 
         //let index = workers.findIndex(w => w.id === idWorkerSelected); easy way 
@@ -606,23 +611,21 @@ function addWorker(idWorkerSelected) {
                 break
             }
         }
-        Salle(workers, classWorker)
+        filtreZoneConference(workers)
         counterWorker.textContent = workers.length
         // envoyer workers of salle conference sallePersonnel
-
-        EnAtendWorkers(workers)
         let placeColor = document.querySelector('.elem-6')
         sallePersonnel.length >= 1 ? placeColor.style.background = '#25e004a4' : 0
         img = "images/close.webp"
         let btnClassRemove = 'btnRemove'
         profile(sallePersonnel)
         profiles(laSalle5, img, sallePersonnel, btnClassRemove)
-        infosWorker.style.display ='block'
+        infosWorker.style.display = 'block'
 
         /****************************************** */
 
     }
-     if (salleChecked == 'SalleArchive') {
+    if (salleChecked == 'SalleArchive') {
 
 
         //let index = workers.findIndex(w => w.id === idWorkerSelected); easy way 
@@ -635,18 +638,16 @@ function addWorker(idWorkerSelected) {
                 break
             }
         }
-        Salle(workers, classWorker)
+        filtreZoneArchive(workers)
         counterWorker.textContent = workers.length
         // envoyer workers of salle conference salleArchives
-
-        EnAtendWorkers(workers)
         let placeColor = document.querySelector('.elem-4')
-        salleArchives.length >= 1 ? placeColor.style.background = '#25e004a4' :0
+        salleArchives.length >= 1 ? placeColor.style.background = '#25e004a4' : 0
         img = "images/close.webp"
         let btnClassRemove = 'btnRemove'
         profile(salleArchives)
         profiles(laSalle6, img, salleArchives, btnClassRemove)
-        infosWorker.style.display ='block'
+        infosWorker.style.display = 'block'
 
         /****************************************** */
 
@@ -659,25 +660,25 @@ function addWorker(idWorkerSelected) {
 
 function addRemove(idWorkerSelected) {
 
-        for (let i = 0; i < workers.length; i++) {
-            if (workers[i].id === idWorkerSelected) {
-                workers[i].Zone = 'Unassigned Staff'
-                salleConference.push(workers[i])
-                workers.splice(i, 1)
-                break
-            }
+    for (let i = 0; i < workers.length; i++) {
+        if (workers[i].id === idWorkerSelected) {
+            workers[i].Zone = 'Unassigned Staff'
+            salleConference.push(workers[i])
+            workers.splice(i, 1)
+            break
         }
-        Salle(workers, classWorker)
-        counterWorker.textContent = workers.length
-        // envoyer workers of salle conference salleConference
+    }
+    Salle(workers, classWorker)
+    counterWorker.textContent = workers.length
+    // envoyer workers of salle conference salleConference
 
-        EnAtendWorkers(workers)
-        let placeColor = document.querySelector('.elem-1')
-        salleConference.length >= 1 ? placeColor.style.background = '#25e004a4' :0
-        img = "images/close.webp"
-        let btnClassRemove = 'btnRemove'
-        profile(salleConference)
-        profiles(laSalle1, img, salleConference, btnClassRemove)
-        infosWorker.style.display ='block'
-        /****************************************** */
+    EnAtendWorkers(workers)
+    let placeColor = document.querySelector('.elem-1')
+    salleConference.length >= 1 ? placeColor.style.background = '#25e004a4' : 0
+    img = "images/close.webp"
+    let btnClassRemove = 'btnRemove'
+    profile(salleConference)
+    profiles(laSalle1, img, salleConference, btnClassRemove)
+    infosWorker.style.display = 'block'
+    /****************************************** */
 }
