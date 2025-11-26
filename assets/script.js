@@ -267,6 +267,7 @@ function profile(tableWorker) {
     profille.innerHTML = ""
     let Worker = document.createElement('div');
     Worker.className = 'infosWorker-plat'
+    Worker.innerHTML = ""
     Worker.innerHTML = tableWorker.map((elem) => `
         <div class="infosWorker-profielTitle">
             <h2>Profile</h2>
