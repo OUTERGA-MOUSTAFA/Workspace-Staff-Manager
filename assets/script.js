@@ -12,14 +12,20 @@ const addExp = document.getElementById('addExp')
 const email = document.getElementById('email')
 const telephone = document.getElementById('telephone')
 const saveWorker = document.querySelector('.saveWorker')
-const addWorker = document.getElementById('addWorker')
 const cancelWorker = document.getElementById('cancel')
 const closeModal = document.querySelector('.closeModel')
 const url = document.getElementById('photo')
 const Modal = document.querySelector('.Register')
 let counterWorker = document.querySelector('#counterWorker')
 let counteur = 0
-
+/*--------------Open Modal--------------------------*/
+document.getElementById('addWorker').addEventListener('click', () => {
+    Modal.style.display = 'block'
+})
+/*---------------close Modal------------------------*/
+closeModal.addEventListener('click', () => {
+    Modal.style.display = 'none'
+})
 
 const item1 = document.querySelector('.item-1')
 let classWorker = document.querySelector('.BriefInfos')
@@ -29,14 +35,6 @@ const infosWorker = document.querySelector('.infosWorker')
 
 document.querySelector('#closeBriefInfos').addEventListener('click', () => {
     modalProfile.style.display = 'none'
-})
-/*---------------close Modal------------------------*/
-closeModal.addEventListener('click', () => {
-    Modal.style.display = 'none'
-})
-/*--------------Open Modal--------------------------*/
-addWorker.addEventListener('click', () => {
-    Modal.style.display = 'flex'
 })
 
 /*---------------Remlire list roles workers---------*/
@@ -108,7 +106,7 @@ function errorValidation() {
             parafromdate.textContent = "Date De pas correct!"
             valid = false
             return valid
-        }else{
+        } else {
             parafromdate.textContent = ""
         }
 
@@ -218,7 +216,7 @@ function urlValidation() {
     }
 }
 
-function profiles(classWorkers, img, tableworkers) {
+function profiles(classWorkers, img, tableworkers, btnClass) {
 
     let Worker = document.createElement('div');
     console.log("Worker table profile: ", tableworkers)
@@ -234,54 +232,28 @@ function profiles(classWorkers, img, tableworkers) {
                 <p>${elem.Nom}</p>
                 <p class="roleworker">${elem.Role}</p>
             </div>
-            <img src="${img}" alt="out worker" class="btnEdit" onclick="addworker(${elem.id})">
+            <img src="${img}" alt="out worker" class="${btnClass}" data-id="${elem.id}">
         </div>
             `).join('')
     classWorkers.appendChild(Worker)
+
+    document.querySelectorAll('.btnAjouter').forEach(btn => {
+        btn.addEventListener('click', () => {
+
+            let id = parseInt(btn.dataset.id)
+            addworker(id)
+        })
+    })
+
+
 }
-
-
-// function profiles(classWorkers, img, tableworkers) {
-
-//     let Worker = document.createElement('div');
-//     console.log("Worker table profile: ", tableworkers)
-//     Worker.className = "Worker"
-//     classWorkers.innerHTML = ""
-//     Worker.innerHTML = tableworkers.map((elem) =>
-//         ` 
-//         <div class="EnAtend">
-//             <div class="photoworker">                
-//                 <img src="${elem.photo}" alt="profile Worker pic" class="profileWorkerPic">
-//             </div>
-//             <div class="nomworker">
-//                 <p>${elem.Nom}</p>
-//                 <p class="roleworker">${elem.Role}</p>
-//             </div>
-//             <img src="${img}" alt="out worker" class="${btnUAD}" data-id="${elem.id}">
-//         </div>
-//             `).join('')
-//     classWorkers.appendChild(Worker)
-// }
-
-// function EditAjouterDelete(id){
-//     //let Worker = document.querySelector('.Worker')
-//     let btnAdd = document.querySelector('.btn')
-//     btnAdd.forEach(btn => {
-//         btn.addEventListener('click', () => {
-
-//             let id = parseInt(btn.dataset.id)
-
-//             addworker(id, tableworkers, targetTable)
-//         })
-//     })
-// }
-
 
 
 function EnAtendWorkers(employer) {
     let enAtend = document.querySelector('.enAtend')
     let img = "images/edit.webp"
-    profiles(enAtend, img, employer)
+    let btnClassEdit = img.className = 'btnEdit'
+    profiles(enAtend, img, employer, btnClassEdit)
 }
 
 
@@ -335,7 +307,6 @@ function formValidation() {
         }
         document.querySelector('.ExpPro').innerHTML = ""
         workers.unshift(addWorker)
-        console.log(workers)
         document.querySelector("form").reset();
         TableExp = []
         EnAtendWorkers(workers)
@@ -364,56 +335,20 @@ saveWorker.addEventListener('click', (e) => {
 
 function Salle(emp) {
     let img = "images/ajouter.webp"
+    let btnClassAjouter = img.className = 'btnAjouter'
     //let classAjouter = img.className = 'btnAjouter'
-    profiles(classWorker, img, emp)
+    profiles(classWorker, img, emp, btnClassAjouter)
 }
 //-----------------------------------------------------------
 
-
-/*************************** Function add worker to Zone *****************************/
-
-let laSalle1 = document.querySelector('.elem-1')
-let laSalle2 = document.querySelector('.elem-2')
-let laSalle3 = document.querySelector('.elem-3')
-let laSalle4 = document.querySelector('.elem-4')
-let laSalle5 = document.querySelector('.elem-5')
-let laSalle6 = document.querySelector('.elem-6')
-function addworker(idWorkerSelected) {
-    /*--------------Open Modal--------------------------*/
-    addWorker.addEventListener('click', () => {
-        Modal.style.display = 'block'
-    })
-    //let index = workers.findIndex(w => w.id === idWorkerSelected); easy way 
-
-    for (let i = 0; i < workers.length; i++) {
-        if (workers[i].id === idWorkerSelected) {
-            salleConference.push(workers[i])
-            workers.splice(i, 1)
-            break;
-        }
-
-    }
-    Salle(workers)
-    counterWorker.textContent = workers.length
-    // envoyer workers of salle conference salleConference
-    let classConference = document.querySelector('#elem1')
-    EnAtendWorkers(workers)
-    if(salleConference.length>=1){
-        laSalle1.style.background = '#25e004a4'
-    } 
-    img = "images/close.webp"
-    //let classRemove = img.className = 'btnAjouter'
-    // profile(salleConference)
-    profiles(classConference, img,salleConference)
-
-}
-
-
-
-
+let salleChecked = ""
 // ['Nettoyage', 'Sécurité', 'Receptionest', 'Serveur', 'Manager', 'Autre rôles']
-document.querySelector('#SalleConference').addEventListener('click', () => {
+document.querySelector('#Conference').addEventListener('click', () => {
     let maxSalleConference = 8
+    salleChecked = "SalleConference"
+    /*--------------Open Modal--------------------------*/
+
+    classWorker.style.display = 'block'
 
     if (maxSalleConference == salleConference.length) {
         alert('La salle de conférence est plain! merçi')
@@ -426,8 +361,12 @@ document.querySelector('#SalleConference').addEventListener('click', () => {
     modalProfile.style.display = 'block'
     Salle(employeur)
 })
-document.querySelector('#SalleReception').addEventListener('click', () => {
+document.querySelector('#Reception').addEventListener('click', () => {
     let maxSalleResption = 3
+    salleChecked = "SalleReception"
+    /*--------------Open Modal--------------------------*/
+
+    classWorker.style.display = 'block'
 
     if (maxSalleResption == salleReception.length) {
         alert('La salle de reception est plain! merçi')
@@ -440,8 +379,11 @@ document.querySelector('#SalleReception').addEventListener('click', () => {
     modalProfile.style.display = 'block'
     Salle(employeur)
 })
-document.querySelector('#SalleServer').addEventListener('click', () => {
+document.querySelector('#Server').addEventListener('click', () => {
     let maxSalleDev = 2
+    salleChecked = "SalleServer"
+    /*--------------Open Modal--------------------------*/
+    classWorker.style.display = 'block'
 
     if (maxSalleDev == salleServeurs.length) {
         alert('La salle de reception est plain! merçi')
@@ -456,8 +398,11 @@ document.querySelector('#SalleServer').addEventListener('click', () => {
 })
 
 
-document.querySelector('#SalleSecurie').addEventListener('click', () => {
+document.querySelector('#Securie').addEventListener('click', () => {
     let maxSalleSecurite = 2
+    salleChecked = "SalleSecurie"
+    /*--------------Open Modal--------------------------*/
+    classWorker.style.display = 'block'
 
     if (maxSalleSecurite == salleSecurite.length) {
         alert('La salle de sécurité est plain! merçi')
@@ -470,8 +415,11 @@ document.querySelector('#SalleSecurie').addEventListener('click', () => {
     modalProfile.style.display = 'block'
     Salle(employeur)
 })
-document.querySelector('#SallePersonnel').addEventListener('click', () => {
+document.querySelector('#Personnel').addEventListener('click', () => {
     let maxSallePersonnel = 2
+    salleChecked = "SallePersonnel"
+    /*--------------Open Modal--------------------------*/
+    classWorker.style.display = 'block'
 
     if (maxSallePersonnel == sallePersonnel.length) {
         alert('La salle de personnel est plain! merçi')
@@ -479,15 +427,19 @@ document.querySelector('#SallePersonnel').addEventListener('click', () => {
     }
     let employeur = []
     workers.map(elem =>
-       elem.Zone == 'Unassigned Staff' ? employeur.push(elem) : 0
+        elem.Zone == 'Unassigned Staff' ? employeur.push(elem) : 0
     )
     modalProfile.style.display = 'block'
     Salle(employeur)
 })
 
 
-document.querySelector('#SalleArchive').addEventListener('click', () => {
+document.querySelector('#Archive').addEventListener('click', () => {
     let maxSalleArchive = 2
+    salleChecked = "SalleArchive"
+    /*--------------Open Modal--------------------------*/
+    classWorker.style.display = 'black'
+
 
     if (maxSalleArchive == salleArchives.length) {
         alert('La salle de personnel est plain! merçi')
@@ -500,3 +452,198 @@ document.querySelector('#SalleArchive').addEventListener('click', () => {
     modalProfile.style.display = 'block'
     Salle(employeur)
 })
+
+
+
+/*************************** name place Zone workers *****************************/
+let laSalle1 = document.querySelector('#elem1')
+let laSalle2 = document.querySelector('#elem2')
+let laSalle3 = document.querySelector('#elem3')
+let laSalle4 = document.querySelector('#elem4')
+let laSalle5 = document.querySelector('#elem5')
+let laSalle6 = document.querySelector('#elem6')
+
+/********************************* Function add worker to Zone ******************************** */
+
+
+function addworker(idWorkerSelected) {
+
+    //let index = workers.findIndex(w => w.id === idWorkerSelected); easy way 
+    console.log('idWorker:', idWorkerSelected)
+    console.log('salleSelected: ', salleChecked)
+    if (salleChecked == 'SalleConference') {
+
+
+        //let index = workers.findIndex(w => w.id === idWorkerSelected); easy way 
+        console.log('idWorker: ', idWorkerSelected)
+        for (let i = 0; i < workers.length; i++) {
+            if (workers[i].id === idWorkerSelected) {
+                workers[i].Zone = 'salle Conférence'
+                salleConference.push(workers[i])
+                workers.splice(i, 1)
+                break
+            }
+        }
+        Salle(workers, classWorker)
+        counterWorker.textContent = workers.length
+        // envoyer workers of salle conference salleConference
+
+        EnAtendWorkers(workers)
+        let placeColor = document.querySelector('.elem-1')
+        salleConference.length >= 1 ? placeColor.style.background = '#25e004a4' : placeColor.style.background = '#a3410848'
+        img = "images/close.webp"
+        let btnClassRemove = 'btnRemove'
+        profile(salleConference)
+        profiles(laSalle1, img, salleConference, btnClassRemove)
+        infosWorker.style.display ='block'
+
+        /****************************************** */
+
+    }
+
+    if (salleChecked == 'SalleReception') {
+
+
+        //let index = workers.findIndex(w => w.id === idWorkerSelected); easy way 
+        console.log('idWorker: ', idWorkerSelected)
+        for (let i = 0; i < workers.length; i++) {
+            if (workers[i].id === idWorkerSelected) {
+                workers[i].Zone = 'Salle Réception'
+                salleReception.push(workers[i])
+                workers.splice(i, 1)
+                break
+            }
+        }
+        Salle(workers, classWorker)
+        counterWorker.textContent = workers.length
+        // envoyer workers of salle conference salleReception
+
+        EnAtendWorkers(workers)
+        let placeColor = document.querySelector('.elem-2')
+        salleReception.length >= 1 ? placeColor.style.background = '#25e004a4' : placeColor.style.background = '#a3410848'
+        img = "images/close.webp"
+        let btnClassRemove = 'btnRemove'
+        profile(salleReception)
+        profiles(laSalle2, img, salleReception, btnClassRemove)
+        infosWorker.style.display ='block'
+
+        /****************************************** */
+
+    }
+     if (salleChecked == 'SalleServer') {
+
+
+        //let index = workers.findIndex(w => w.id === idWorkerSelected); easy way 
+        console.log('idWorker: ', idWorkerSelected)
+        for (let i = 0; i < workers.length; i++) {
+            if (workers[i].id === idWorkerSelected) {
+                workers[i].Zone = 'Salle Serveurs'
+                salleServeurs.push(workers[i])
+                workers.splice(i, 1)
+                break
+            }
+        }
+        Salle(workers, classWorker)
+        counterWorker.textContent = workers.length
+        // envoyer workers of salle conference salleServeurs
+
+        EnAtendWorkers(workers)
+        let placeColor = document.querySelector('.elem-3')
+        salleServeurs.length >= 1 ? placeColor.style.background = '#25e004a4' : placeColor.style.background = '#a3410848'
+        img = "images/close.webp"
+        let btnClassRemove = 'btnRemove'
+        profile(salleServeurs)
+        profiles(laSalle3, img, salleServeurs, btnClassRemove)
+        infosWorker.style.display ='block'
+
+        /****************************************** */
+
+    }
+     if (salleChecked == 'SalleSecurie') {
+
+
+        //let index = workers.findIndex(w => w.id === idWorkerSelected); easy way 
+        console.log('idWorker: ', idWorkerSelected)
+        for (let i = 0; i < workers.length; i++) {
+            if (workers[i].id === idWorkerSelected) {
+                workers[i].Zone = 'Salle sécurité'
+                salleSecurite.push(workers[i])
+                workers.splice(i, 1)
+                break
+            }
+        }
+        Salle(workers, classWorker)
+        counterWorker.textContent = workers.length
+        // envoyer workers of salle conference salleSecurite
+
+        EnAtendWorkers(workers)
+        let placeColor = document.querySelector('.elem-5')
+        salleSecurite.length >= 1 ? placeColor.style.background = '#25e004a4' : placeColor.style.background = '#a3410848'
+        img = "images/close.webp"
+        let btnClassRemove = 'btnRemove'
+        profile(salleSecurite)
+        profiles(laSalle4, img, salleSecurite, btnClassRemove)
+        infosWorker.style.display ='block'
+
+        /****************************************** */
+
+    }
+     if (salleChecked == 'SallePersonnel') {
+
+
+        //let index = workers.findIndex(w => w.id === idWorkerSelected); easy way 
+        console.log('idWorker: ', idWorkerSelected)
+        for (let i = 0; i < workers.length; i++) {
+            if (workers[i].id === idWorkerSelected) {
+                workers[i].Zone = 'Salle personnel'
+                sallePersonnel.push(workers[i])
+                workers.splice(i, 1)
+                break
+            }
+        }
+        Salle(workers, classWorker)
+        counterWorker.textContent = workers.length
+        // envoyer workers of salle conference sallePersonnel
+
+        EnAtendWorkers(workers)
+        let placeColor = document.querySelector('.elem-6')
+        sallePersonnel.length >= 1 ? placeColor.style.background = '#25e004a4' : placeColor.style.background = '#a3410848'
+        img = "images/close.webp"
+        let btnClassRemove = 'btnRemove'
+        profile(sallePersonnel)
+        profiles(laSalle5, img, sallePersonnel, btnClassRemove)
+        infosWorker.style.display ='block'
+
+        /****************************************** */
+
+    }
+     if (salleChecked == 'SalleArchive') {
+
+
+        //let index = workers.findIndex(w => w.id === idWorkerSelected); easy way 
+        console.log('idWorker: ', idWorkerSelected)
+        for (let i = 0; i < workers.length; i++) {
+            if (workers[i].id === idWorkerSelected) {
+                workers[i].Zone = 'Salle personnel'
+                salleArchives.push(workers[i])
+                workers.splice(i, 1)
+                break
+            }
+        }
+        Salle(workers, classWorker)
+        counterWorker.textContent = workers.length
+        // envoyer workers of salle conference salleArchives
+
+        EnAtendWorkers(workers)
+        let placeColor = document.querySelector('.elem-4')
+        salleArchives.length >= 1 ? placeColor.style.background = '#25e004a4' : placeColor.style.background = '#a3410848'
+        img = "images/close.webp"
+        let btnClassRemove = 'btnRemove'
+        profile(salleArchives)
+        profiles(laSalle6, img, salleArchives, btnClassRemove)
+        infosWorker.style.display ='block'
+
+        /****************************************** */
+
+    }
+}

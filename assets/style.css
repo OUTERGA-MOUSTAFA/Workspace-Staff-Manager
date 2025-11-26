@@ -11,6 +11,15 @@
      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
  }
 
+ .btnRemove {
+     width: 20px;
+     height: 20px;
+     border-radius: 50%;
+     overflow: hidden;
+     cursor: pointer;
+     border: none;
+ }
+
  footer {
      color: #FFFFFF;
      background: #303135;
@@ -23,28 +32,33 @@
      justify-content: center;
      align-items: center;
  }
- .ftr{
-    text-align: center;
-    padding: 12px;
+
+ .ftr {
+     text-align: center;
+     padding: 12px;
  }
-a{
-    background:#858484;
-    padding: 8px 15px;
-    margin: 2px 12px;
-    border-radius: 10px;
-    text-decoration: none;
-    color: #FFFFFF;
-}
-a:focus {
-  outline: 3px solid #005fcc;
-  outline-offset: 2px;
-}
+
+ a {
+     background: #858484;
+     padding: 8px 15px;
+     margin: 2px 12px;
+     border-radius: 10px;
+     text-decoration: none;
+     color: #FFFFFF;
+ }
+
+ a:focus {
+     outline: 3px solid #005fcc;
+     outline-offset: 2px;
+ }
+
  .paraErrore {
      color: #e74c3c;
      font-size: 14px;
      padding: 3px;
      text-transform: lowercase;
  }
+
  .enAtend,
  #elem1,
  .BriefInfos {
@@ -216,7 +230,7 @@ a:focus {
  }
 
  .work-Experiences {
-     background: #000;
+     background: #00000099;
      width: 100%;
      height: 30%;
  }
@@ -255,26 +269,30 @@ a:focus {
      grid-column: 1/5;
      grid-row: 1/5;
  }
-  .elements {
+
+ .elements {
      background: #a3410848;
      font-size: 15px;
      border-radius: 20px;
-     padding:2px;
+     padding: 2px;
      display: flex;
      flex-direction: column;
      align-items: center;
  }
-.element-header{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 100%;
-}
- #elem1{
-    width: 100%;
-    height: 100%;
+
+ .element-header {
+     display: flex;
+     flex-direction: row;
+     justify-content: space-evenly;
+     align-items: center;
+     width: 100%;
  }
+
+ #elem1 {
+     width: 100%;
+     height: 100%;
+ }
+
  .elem-2 {
      grid-column: 1/5;
      grid-row: 5/13;
@@ -371,6 +389,7 @@ a:focus {
      max-height: 80px;
      border-radius: 50%;
  }
+
  .inputs {
      margin-bottom: 25px;
      border: 0;
@@ -378,8 +397,9 @@ a:focus {
      width: 90%;
      font-size: 16px;
  }
+
  .inputs>label {
-    font-size: 14px;
+     font-size: 14px;
  }
 
 
@@ -493,8 +513,9 @@ a:focus {
 
  .photoworker {
      border: #07ed07 2px solid;
-     width: 50px;
-     height: 50px;
+     width: 40px;
+     height: 40px;
+     margin-right: 4px;
      border-radius: 50%;
      overflow: hidden;
      display: flex;
@@ -518,7 +539,7 @@ a:focus {
      font-weight: 300;
  }
 
- .btnEdit {
+ .btnEdit ,.btnAjouter{
      border: none;
      width: 30px;
      height: 30px;
@@ -528,6 +549,16 @@ a:focus {
  }
 
  @media (min-width:768px) {
+     .btnRemove {
+         width: 25px;
+         height: 25px;
+     }
+
+     .photoworker {
+
+         width: 42px;
+         height: 42px;
+     }
 
      .item-1 {
          margin: auto 15px;
@@ -590,14 +621,25 @@ a:focus {
      .EnAtend {
          width: 260px;
      }
-     
- .plusWorker {
-     width: 25px;
-     height: 25px;
- }
+
+     .plusWorker {
+         width: 25px;
+         height: 25px;
+     }
  }
 
  @media (min-width:1024px) {
+     .photoworker {
+
+         width: 45px;
+         height: 45px;
+     }
+
+     .btnRemove {
+         width: 22px;
+         height: 22px;
+     }
+
      .container {
          padding: 15px;
      }
@@ -683,20 +725,32 @@ a:focus {
      #closeBriefInfos:hover {
          rotate: 360deg;
      }
-     
- .plusWorker {
-     width: 30px;
-     height: 30px;
- }
- h5{
-    font-size: 20px;
- }
+
+     .plusWorker {
+         width: 30px;
+         height: 30px;
+     }
+
+     h5 {
+         font-size: 20px;
+     }
  }
 
  @media (min-width:1280px) {
      .container {
          gap: 1rem;
          font-size: 24px;
+     }
+
+     .photoworker {
+
+         width: 50px;
+         height: 50px;
+     }
+
+     .btnRemove {
+         width: 28px;
+         height: 28px;
      }
 
      .item-1 {
@@ -767,24 +821,27 @@ a:focus {
      }
 
      .EnAtend {
-        
+
          width: 240px;
          height: 75px;
          padding: 6px;
          align-items: center;
      }
-     .Worker{
-        width: 100%;
-        height: 100%;
+
+     .Worker {
+         width: 100%;
+         height: 100%;
      }
-     
- .plusWorker {
-     width: 40px;
-     height: 40px;
- }
- h5{
-    font-size: 28px;
- }
+
+     .plusWorker {
+         width: 40px;
+         height: 40px;
+     }
+
+     h5 {
+         font-size: 28px;
+     }
+
      .enAtend {
          width: 100%;
          gap: 0.5rem;
